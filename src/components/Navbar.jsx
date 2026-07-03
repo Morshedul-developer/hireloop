@@ -33,8 +33,8 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="HireLoop"
-              width={145}
-              height={40}
+              width={135}
+              height={35}
               priority
             />
 

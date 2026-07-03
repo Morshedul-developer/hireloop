@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-[#050505] text-zinc-400">
       {/* Background Glow */}
       <div className="absolute inset-0 opacity-20">
-        <div className="mx-auto h-[500px] w-[900px] rounded-full border border-violet-500/10" />
+        <div className="mx-auto h-125 w-225 rounded-full border border-violet-500/10" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 py-20">
@@ -19,7 +19,7 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="HireLoop"
-                width={170}
+                width={150}
                 height={50}
                 priority
               />
