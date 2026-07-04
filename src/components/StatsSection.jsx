@@ -49,7 +49,6 @@ export default function StatsSection() {
             left-1/2
             bottom-0
             -translate-x-1/2
-
             w-230
             max-w-none
             h-auto
