@@ -1,10 +1,9 @@
-import Image from "next/image";
+import StatsSection from "@/components/StatsSection";
 
 export default function Home() {
   return (
     <div>
-      <h1>Hireloop</h1>
-    <div>fasdfasdfsdklfjsdlkfjsdklf</div>
+      <StatsSection/>
     </div>
   );
 }
