@@ -83,7 +83,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ================= Mobile Button ================= */}
+          {/* ============ Mobile Button ============= */}
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -99,7 +99,7 @@ export default function Navbar() {
         <div
           className={`overflow-hidden transition-all duration-300 lg:hidden ${
             isMenuOpen
-              ? "mt-4 max-h-[500px] opacity-100"
+              ? "mt-4 max-h-125 opacity-100"
               : "max-h-0 opacity-0"
           }`}
         >
