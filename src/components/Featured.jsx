@@ -2,7 +2,7 @@
 const FeaturedJobs = () => {
     return (
         <div>
-            Featured Jobs
+            <h1>Featured Jobs</h1>
         </div>
     );
 };
