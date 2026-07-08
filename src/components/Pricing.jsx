@@ -2,7 +2,7 @@
 const Pricing = () => {
     return (
         <div>
-            Pricing Section
+            <h2>Pricing Section</h2>
         </div>
     );
 };
