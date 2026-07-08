@@ -64,7 +64,7 @@ export default function Navbar() {
 
             <div className="mx-5 h-7 w-px bg-zinc-700" />
 
-            {/* Sign In */}
+            {/* Authentication Part */}
 
             <Link
               href="/login"
