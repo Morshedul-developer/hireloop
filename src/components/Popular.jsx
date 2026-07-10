@@ -3,7 +3,8 @@ import React from 'react';
 const PopularSection = () => {
     return (
         <div>
-            Popular Section
+            <h1>Popular Section</h1>
+            <p>This is the popular section.</p>
         </div>
     );
 };
