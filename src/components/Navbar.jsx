@@ -83,7 +83,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* ============ Mobile Button ============= */}
+          {/* ============ Mobile Button Part ============= */}
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
