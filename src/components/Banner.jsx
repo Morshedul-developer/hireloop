@@ -2,7 +2,7 @@
 const Banner = () => {
     return (
         <div>
-            Banner
+            <h1>Banner</h1>
         </div>
     );
 };
