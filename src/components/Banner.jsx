@@ -27,7 +27,7 @@ export default function Banner() {
 
           <h1 className="mt-6 text-5xl font-black leading-tight text-white lg:text-7xl">
             Find Your
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
               {" "}Dream Job
             </span>
             <br />
@@ -70,7 +70,6 @@ export default function Banner() {
 
           </div>
 
-          {/* Popular */}
 
           <div className="mt-6 flex flex-wrap gap-3">
 
