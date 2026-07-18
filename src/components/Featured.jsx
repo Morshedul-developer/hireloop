@@ -58,41 +58,36 @@ export default function FeaturedJobs() {
   return (
     <section className="bg-slate-50 py-24">
       <div className="mx-auto max-w-7xl px-6">
-
         {/* Heading */}
 
-        <div className="mb-14 flex items-center justify-between">
-
+        <div className="mb-16 flex flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
           <div>
-
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-600">
-              Featured Opportunities
+            <span className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+              🔥 Featured Opportunities
             </span>
 
-            <h2 className="mt-4 text-4xl font-black text-slate-900">
-              Find Your Next Career Move
+            <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
+              Featured Jobs
             </h2>
 
-            <p className="mt-3 max-w-2xl text-slate-600">
-              Hand-picked opportunities from Bangladesh's top companies.
+            <p className="mt-4 max-w-2xl text-lg text-slate-500">
+              Discover hand-picked opportunities from Bangladesh's top companies
+              and start your next career journey today.
             </p>
-
           </div>
 
           <Link
             href="/jobs"
-            className="hidden items-center gap-2 rounded-xl border px-6 py-3 font-semibold transition hover:bg-slate-900 hover:text-white lg:flex"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-blue-600 px-6 py-3 font-semibold shadow-sm transition-all hover:border-blue-600 hover:bg-blue-700 hover:text-white"
           >
             View All Jobs
             <ArrowRight size={18} />
           </Link>
-
         </div>
 
         {/* Cards */}
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-
           {jobs.map((job) => (
             <div
               key={job.id}
@@ -113,7 +108,6 @@ export default function FeaturedJobs() {
               {/* Logo */}
 
               <div className="mt-10 flex items-center gap-4">
-
                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl border bg-slate-100">
                   <Image
                     src={job.logo}
@@ -124,15 +118,10 @@ export default function FeaturedJobs() {
                 </div>
 
                 <div>
-
                   <h4 className="font-bold">{job.company}</h4>
 
-                  <p className="text-sm text-slate-500">
-                    Verified Company
-                  </p>
-
+                  <p className="text-sm text-slate-500">Verified Company</p>
                 </div>
-
               </div>
 
               {/* Title */}
@@ -144,7 +133,6 @@ export default function FeaturedJobs() {
               {/* Details */}
 
               <div className="mt-6 space-y-4">
-
                 <div className="flex items-center gap-3 text-slate-600">
                   <MapPin size={18} />
                   {job.location}
@@ -159,7 +147,6 @@ export default function FeaturedJobs() {
                   <BadgeDollarSign size={18} />
                   {job.salary}
                 </div>
-
               </div>
 
               <button className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-blue-600">
@@ -168,7 +155,6 @@ export default function FeaturedJobs() {
               </button>
             </div>
           ))}
-
         </div>
 
         {/* Mobile Button */}
@@ -181,7 +167,6 @@ export default function FeaturedJobs() {
             View All Jobs
           </Link>
         </div>
-
       </div>
     </section>
   );
