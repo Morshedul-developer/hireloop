@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import FeaturedJobs from "@/components/Featured";
 import StatsSection from "@/components/StatsSection";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <Banner/>
       <StatsSection/>
+      <FeaturedJobs/>
     </div>
   );
 }
