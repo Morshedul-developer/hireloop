@@ -87,16 +87,33 @@ export default function FeaturedJobs() {
 
         {/* Cards */}
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {jobs.map((job) => (
             <div
               key={job.id}
-              className="group relative overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-2xl"
+              className="
+group
+relative
+flex
+flex-col
+overflow-hidden
+rounded-3xl
+border
+border-slate-200
+bg-white
+p-6
+shadow-sm
+transition-all
+duration-500
+hover:-translate-y-2
+hover:border-blue-500
+hover:shadow-[0_25px_70px_rgba(37,99,235,.18)]
+"
             >
               {/* Featured */}
 
               {job.featured && (
-                <span className="absolute right-5 top-5 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-semibold text-white">
+                <span className="absolute right-5 top-5 rounded-full bg-linear-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-semibold text-white">
                   Featured
                 </span>
               )}
@@ -126,7 +143,7 @@ export default function FeaturedJobs() {
 
               {/* Title */}
 
-              <h3 className="mt-8 text-xl font-bold transition group-hover:text-blue-600">
+              <h3 className="mt-8 text-xl font-bold transition text-blue-600">
                 {job.title}
               </h3>
 
