@@ -62,8 +62,8 @@ export default function Pricing() {
   return (
     <section className="relative overflow-hidden bg-[#0b0b0e] py-20 text-white sm:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/2 top-[-25rem] h-[48rem] w-[48rem] -translate-x-1/2 rounded-full bg-violet-600/20 blur-[130px]" />
-        <div className="absolute right-[-16rem] top-96 h-96 w-96 rounded-full bg-fuchsia-600/10 blur-[120px]" />
+        <div className="absolute left-1/2 -top-100 h-192 w-3xl -translate-x-1/2 rounded-full bg-violet-600/20 blur-[130px]" />
+        <div className="absolute -right-64 top-96 h-96 w-96 rounded-full bg-fuchsia-600/10 blur-[120px]" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
