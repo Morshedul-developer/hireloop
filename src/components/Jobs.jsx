@@ -169,12 +169,12 @@ function companyInitials(name) {
     .toUpperCase();
 }
 
-export default function Jobs({ initialCategory }) {
+export default function Jobs({ initialCategory, initialQuery }) {
   const initialCategoryMatch = categories.find(
     (category) => category.toLowerCase() === (initialCategory || "").toLowerCase()
   );
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery || "");
   const [activeCategory, setActiveCategory] = useState(
     initialCategoryMatch || "All Categories"
   );
@@ -243,7 +243,7 @@ export default function Jobs({ initialCategory }) {
 
       {/* Filters */}
 
-      <section className="border-y border-white/10 bg-white/[0.02] py-6">
+      <section className="border-y border-white/10 bg-white/2 py-6">
         <div className="mx-auto max-w-7xl space-y-4 px-6">
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -291,7 +291,7 @@ export default function Jobs({ initialCategory }) {
           </p>
 
           {filteredJobs.length === 0 ? (
-            <div className="flex flex-col items-center rounded-3xl border border-white/10 bg-white/[0.03] py-24 text-center">
+            <div className="flex flex-col items-center rounded-3xl border border-white/10 bg-white/3 py-24 text-center">
               <SearchX className="text-zinc-600" size={40} />
               <h3 className="mt-5 text-xl font-semibold">No jobs match your filters</h3>
               <p className="mt-2 text-zinc-400">Try a different keyword or clear your filters.</p>
@@ -308,7 +308,7 @@ export default function Jobs({ initialCategory }) {
               {filteredJobs.map((job) => (
                 <div
                   key={job.id}
-                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/40 hover:bg-white/[0.05]"
+                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/40 hover:bg-white/5"
                 >
                   {job.featured && (
                     <span className="absolute right-5 top-5 rounded-full bg-linear-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-semibold text-white">

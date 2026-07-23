@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default async function JobsPage({ searchParams }) {
-  const { category = "" } = await searchParams;
+  const { category = "", q = "" } = await searchParams;
 
-  return <Jobs initialCategory={category} />;
+  return <Jobs initialCategory={category} initialQuery={q} />;
 }
