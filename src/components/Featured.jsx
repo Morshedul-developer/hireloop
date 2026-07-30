@@ -79,7 +79,7 @@ export default function FeaturedJobs() {
 
           <Link
             href="/jobs"
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-blue-600 px-6 py-3 font-semibold shadow-sm transition-all hover:border-blue-600 hover:bg-blue-700 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-sm transition-all hover:bg-blue-700"
           >
             View All Jobs
             <ArrowRight size={18} />
