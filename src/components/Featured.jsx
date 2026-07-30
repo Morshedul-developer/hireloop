@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import {
   BriefcaseBusiness,
   MapPin,
@@ -166,7 +167,13 @@ hover:shadow-[0_25px_70px_rgba(37,99,235,.18)]
                 </div>
               </div>
 
-              <button className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-blue-600">
+              <button
+                type="button"
+                onClick={() =>
+                  toast.success(`Application sent for ${job.title} at ${job.company}!`)
+                }
+                className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-blue-600"
+              >
                 Apply Now
                 <BriefcaseBusiness size={18} />
               </button>

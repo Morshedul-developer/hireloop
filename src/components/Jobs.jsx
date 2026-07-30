@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import toast from "react-hot-toast";
 import {
   Search,
   MapPin,
@@ -350,7 +351,13 @@ export default function Jobs({ initialCategory, initialQuery }) {
                     </div>
                   </div>
 
-                  <button className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-white/10 py-3 font-semibold text-white transition group-hover:bg-violet-500">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      toast.success(`Application sent for ${job.title} at ${job.company}!`)
+                    }
+                    className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-white/10 py-3 font-semibold text-white transition group-hover:bg-violet-500"
+                  >
                     Apply Now
                     <BriefcaseBusiness size={18} />
                   </button>
