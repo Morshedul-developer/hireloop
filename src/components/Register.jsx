@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { User, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
+import { FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import AuthLayout from "@/components/AuthLayout";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -218,6 +219,33 @@ export default function Register() {
           )}
         </button>
       </form>
+
+      <div className="mt-7 flex items-center gap-3">
+        <div className="h-px flex-1 bg-white/10" />
+        <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+          Or continue with
+        </span>
+        <div className="h-px flex-1 bg-white/10" />
+      </div>
+
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          onClick={() => toast("Google sign-in is coming soon.")}
+          className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
+        >
+          <FaGoogle size={16} />
+          Google
+        </button>
+        <button
+          type="button"
+          onClick={() => toast("LinkedIn sign-in is coming soon.")}
+          className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-3 text-sm font-semibold text-zinc-200 transition hover:border-white/20 hover:bg-white/10"
+        >
+          <FaLinkedinIn size={16} />
+          LinkedIn
+        </button>
+      </div>
 
       <p className="mt-8 text-center text-sm text-zinc-400">
         Already have an account?{" "}
