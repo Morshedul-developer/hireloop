@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Sparkles, Star } from "lucide-react";
 
 const highlights = [
   "Apply to hand-picked roles in one click",
@@ -24,7 +24,12 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
         </Link>
 
         <div className="relative">
-          <h1 className="max-w-md text-4xl font-semibold leading-tight tracking-tight">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-3.5 py-1.5 text-xs font-semibold text-violet-200">
+            <Sparkles size={14} />
+            12,000+ professionals hired this year
+          </span>
+
+          <h1 className="mt-6 max-w-md text-4xl font-semibold leading-tight tracking-tight">
             Land your next role, faster.
           </h1>
           <p className="mt-5 max-w-sm text-lg leading-8 text-zinc-400">
@@ -40,6 +45,27 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
               </li>
             ))}
           </ul>
+
+          <div className="mt-12 max-w-sm rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <div className="flex gap-1 text-amber-400">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} size={14} fill="currentColor" strokeWidth={0} />
+              ))}
+            </div>
+            <p className="mt-4 text-sm leading-6 text-zinc-300">
+              &ldquo;HireLoop matched me with three interviews in my first
+              week. I landed a role that actually fit what I wanted.&rdquo;
+            </p>
+            <div className="mt-4 flex items-center gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs font-bold text-violet-300">
+                FR
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white">Fatima Rahman</p>
+                <p className="text-xs text-zinc-500">Software Engineer, Brain Station 23</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <p className="relative text-sm text-zinc-500">
