@@ -75,8 +75,12 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
 
       {/* Form panel */}
 
-      <div className="flex items-center justify-center px-6 py-16 sm:py-24">
-        <div className="w-full max-w-md">
+      <div className="relative flex items-center justify-center overflow-hidden px-6 py-16 sm:py-24">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden">
+          <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-violet-600/15 blur-[120px]" />
+        </div>
+
+        <div className="relative w-full max-w-md">
           <Link href="/" className="mb-10 flex items-center lg:hidden">
             <Image src="/logo.png" alt="HireLoop" width={120} height={32} priority />
           </Link>
@@ -91,7 +95,10 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
 
           <p className="mt-3 text-zinc-400">{subtitle}</p>
 
-          <div className="mt-10">{children}</div>
+          <div className="relative mt-10 rounded-3xl border border-white/10 bg-white/3 p-6 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-8">
+            <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-violet-400/60 to-transparent" />
+            {children}
+          </div>
         </div>
       </div>
     </div>
