@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 
 const navLinks = [
   {
@@ -22,12 +23,13 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#151518]/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md dark:bg-[#151518]/80">
       <div className="mx-auto max-w-7xl px-4 py-5">
-        <div className="flex h-16 items-center justify-between rounded-2xl bg-[#1F1F22] px-6">
+        <div className="flex h-16 items-center justify-between rounded-2xl bg-slate-100 px-6 dark:bg-[#1F1F22]">
 
           {/* ================= Logo ================= */}
           <Link href="/" className="flex items-center">
@@ -53,7 +55,7 @@ export default function Navbar() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="px-6 text-[16px] font-medium text-zinc-200 transition hover:text-white"
+                    className="px-6 text-[16px] font-medium text-slate-700 transition hover:text-slate-900 dark:text-zinc-200 dark:hover:text-white"
                   >
                     {item.name}
                   </Link>
@@ -65,22 +67,22 @@ export default function Navbar() {
 
             <button
               type="button"
-              onClick={() => setIsDark((prev) => !prev)}
+              onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="rounded-lg p-2 text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+              className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
             >
               {isDark ? <Moon size={20} /> : <Sun size={20} />}
             </button>
 
             {/* Divider */}
 
-            <div className="mx-5 h-7 w-px bg-zinc-700" />
+            <div className="mx-5 h-7 w-px bg-slate-300 dark:bg-zinc-700" />
 
             {/* Authentication Part */}
 
             <Link
               href="/login"
-              className="mr-8 text-[16px] font-medium text-violet-500 transition hover:text-violet-400"
+              className="mr-8 text-[16px] font-medium text-violet-600 transition hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400"
             >
               Sign In
             </Link>
@@ -99,7 +101,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="rounded-lg p-2 text-white transition hover:bg-zinc-800 lg:hidden"
+            className="rounded-lg p-2 text-slate-900 transition hover:bg-slate-200 dark:text-white dark:hover:bg-zinc-800 lg:hidden"
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -115,22 +117,22 @@ export default function Navbar() {
               : "max-h-0 opacity-0"
           }`}
         >
-          <div className="rounded-2xl bg-[#1F1F22] p-6">
+          <div className="rounded-2xl bg-slate-100 p-6 dark:bg-[#1F1F22]">
 
             <div className="mb-5 flex items-center justify-between">
-              <span className="text-sm font-medium text-zinc-400">Theme</span>
+              <span className="text-sm font-medium text-slate-500 dark:text-zinc-400">Theme</span>
 
               <button
                 type="button"
-                onClick={() => setIsDark((prev) => !prev)}
+                onClick={toggleTheme}
                 aria-label="Toggle theme"
-                className="rounded-lg p-2 text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+                className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
               >
                 {isDark ? <Moon size={20} /> : <Sun size={20} />}
               </button>
             </div>
 
-            <div className="mb-5 h-px bg-zinc-700" />
+            <div className="mb-5 h-px bg-slate-300 dark:bg-zinc-700" />
 
             <ul className="space-y-5">
               {navLinks.map((item) => (
@@ -138,7 +140,7 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="block text-lg font-medium text-zinc-200 transition hover:text-white"
+                    className="block text-lg font-medium text-slate-700 transition hover:text-slate-900 dark:text-zinc-200 dark:hover:text-white"
                   >
                     {item.name}
                   </Link>
@@ -146,14 +148,14 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="my-6 h-px bg-zinc-700" />
+            <div className="my-6 h-px bg-slate-300 dark:bg-zinc-700" />
 
             <div className="space-y-3">
 
               <Link
                 href="/login"
                 onClick={() => setIsMenuOpen(false)}
-                className="block rounded-xl border border-zinc-700 py-3 text-center font-medium text-violet-500 transition hover:bg-zinc-800"
+                className="block rounded-xl border border-slate-300 py-3 text-center font-medium text-violet-600 transition hover:bg-slate-200 dark:border-zinc-700 dark:text-violet-500 dark:hover:bg-zinc-800"
               >
                 Sign In
               </Link>
