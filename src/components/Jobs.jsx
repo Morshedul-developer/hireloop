@@ -207,7 +207,7 @@ export default function Jobs({ initialCategory, initialQuery }) {
   };
 
   return (
-    <div className="bg-[#0b0b0e] text-white">
+    <div className="bg-white text-slate-900 dark:bg-[#0b0b0e] dark:text-white">
       {/* Hero / Search */}
 
       <section className="relative overflow-hidden py-20 sm:py-24">
@@ -216,27 +216,27 @@ export default function Jobs({ initialCategory, initialQuery }) {
         </div>
 
         <div className="relative mx-auto max-w-5xl px-6 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
             <BriefcaseBusiness size={16} /> {jobs.length} open roles right now
           </span>
 
           <h1 className="mt-7 text-4xl font-semibold tracking-tight sm:text-6xl">
-            Find your next <span className="text-violet-400">role.</span>
+            Find your next <span className="text-violet-600 dark:text-violet-400">role.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-zinc-400">
             Search live openings from top companies hiring across Bangladesh
             and remote-first teams.
           </p>
 
-          <div className="mx-auto mt-10 flex max-w-2xl items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-2">
-            <Search className="ml-3 shrink-0 text-zinc-500" size={20} />
+          <div className="mx-auto mt-10 flex max-w-2xl items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
+            <Search className="ml-3 shrink-0 text-slate-400 dark:text-zinc-500" size={20} />
             <input
               type="text"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Job title, company, or location"
-              className="w-full bg-transparent px-2 py-3 text-white placeholder:text-zinc-500 focus:outline-none"
+              className="w-full bg-transparent px-2 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-white dark:placeholder:text-zinc-500"
             />
           </div>
         </div>
@@ -244,7 +244,7 @@ export default function Jobs({ initialCategory, initialQuery }) {
 
       {/* Filters */}
 
-      <section className="border-y border-white/10 bg-white/2 py-6">
+      <section className="border-y border-slate-200 bg-slate-50 py-6 dark:border-white/10 dark:bg-white/2">
         <div className="mx-auto max-w-7xl space-y-4 px-6">
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -255,7 +255,7 @@ export default function Jobs({ initialCategory, initialQuery }) {
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   activeCategory === category
                     ? "bg-violet-500 text-white"
-                    : "border border-white/10 bg-white/5 text-zinc-400 hover:border-white/20 hover:text-white"
+                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:border-white/20 dark:hover:text-white"
                 }`}
               >
                 {category}
@@ -271,8 +271,8 @@ export default function Jobs({ initialCategory, initialQuery }) {
                 onClick={() => setActiveType(type)}
                 className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide transition ${
                   activeType === type
-                    ? "bg-white text-zinc-950"
-                    : "border border-white/10 text-zinc-500 hover:border-white/20 hover:text-white"
+                    ? "bg-slate-900 text-white dark:bg-white dark:text-zinc-950"
+                    : "border border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-900 dark:border-white/10 dark:text-zinc-500 dark:hover:border-white/20 dark:hover:text-white"
                 }`}
               >
                 {type}
@@ -286,16 +286,16 @@ export default function Jobs({ initialCategory, initialQuery }) {
 
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <p className="mb-8 text-sm text-zinc-400">
-            Showing <span className="font-semibold text-white">{filteredJobs.length}</span> of{" "}
+          <p className="mb-8 text-sm text-slate-600 dark:text-zinc-400">
+            Showing <span className="font-semibold text-slate-900 dark:text-white">{filteredJobs.length}</span> of{" "}
             {jobs.length} jobs
           </p>
 
           {filteredJobs.length === 0 ? (
-            <div className="flex flex-col items-center rounded-3xl border border-white/10 bg-white/3 py-24 text-center">
-              <SearchX className="text-zinc-600" size={40} />
+            <div className="flex flex-col items-center rounded-3xl border border-slate-200 bg-slate-50 py-24 text-center dark:border-white/10 dark:bg-white/3">
+              <SearchX className="text-slate-400 dark:text-zinc-600" size={40} />
               <h3 className="mt-5 text-xl font-semibold">No jobs match your filters</h3>
-              <p className="mt-2 text-zinc-400">Try a different keyword or clear your filters.</p>
+              <p className="mt-2 text-slate-600 dark:text-zinc-400">Try a different keyword or clear your filters.</p>
               <button
                 type="button"
                 onClick={clearFilters}
@@ -309,7 +309,7 @@ export default function Jobs({ initialCategory, initialQuery }) {
               {filteredJobs.map((job) => (
                 <div
                   key={job.id}
-                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/40 hover:bg-white/5"
+                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-violet-400/40 hover:bg-white dark:border-white/10 dark:bg-white/3 dark:hover:bg-white/5"
                 >
                   {job.featured && (
                     <span className="absolute right-5 top-5 rounded-full bg-linear-to-r from-blue-600 to-violet-600 px-3 py-1 text-xs font-semibold text-white">
@@ -317,35 +317,35 @@ export default function Jobs({ initialCategory, initialQuery }) {
                     </span>
                   )}
 
-                  <button className="absolute left-5 top-5 rounded-full border border-white/10 p-2 text-zinc-400 transition hover:bg-red-500/10 hover:text-red-400">
+                  <button className="absolute left-5 top-5 rounded-full border border-slate-200 p-2 text-slate-500 transition hover:bg-red-50 hover:text-red-500 dark:border-white/10 dark:text-zinc-400 dark:hover:bg-red-500/10 dark:hover:text-red-400">
                     <Heart size={18} />
                   </button>
 
                   <div className="mt-10 flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-sm font-bold text-violet-300">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-sm font-bold text-violet-600 dark:border-white/10 dark:bg-white/5 dark:text-violet-300">
                       {companyInitials(job.company)}
                     </div>
 
                     <div>
-                      <h4 className="font-bold text-white">{job.company}</h4>
-                      <p className="text-sm text-zinc-500">{job.category}</p>
+                      <h4 className="font-bold text-slate-900 dark:text-white">{job.company}</h4>
+                      <p className="text-sm text-slate-500 dark:text-zinc-500">{job.category}</p>
                     </div>
                   </div>
 
-                  <h3 className="mt-8 text-xl font-bold text-white">{job.title}</h3>
+                  <h3 className="mt-8 text-xl font-bold text-slate-900 dark:text-white">{job.title}</h3>
 
                   <div className="mt-6 space-y-4">
-                    <div className="flex items-center gap-3 text-zinc-400">
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-zinc-400">
                       <MapPin size={18} />
                       {job.location}
                     </div>
 
-                    <div className="flex items-center gap-3 text-zinc-400">
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-zinc-400">
                       <Clock3 size={18} />
                       {job.type}
                     </div>
 
-                    <div className="flex items-center gap-3 text-zinc-400">
+                    <div className="flex items-center gap-3 text-slate-600 dark:text-zinc-400">
                       <BadgeDollarSign size={18} />
                       {job.salary}
                     </div>
@@ -356,7 +356,7 @@ export default function Jobs({ initialCategory, initialQuery }) {
                     onClick={() =>
                       toast.success(`Application sent for ${job.title} at ${job.company}!`)
                     }
-                    className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-white/10 py-3 font-semibold text-white transition group-hover:bg-violet-500"
+                    className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-violet-500 dark:bg-white/10"
                   >
                     Apply Now
                     <BriefcaseBusiness size={18} />
