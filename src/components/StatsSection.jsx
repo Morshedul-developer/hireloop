@@ -33,36 +33,23 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="relative overflow-hidden bg-black">
+    <section className="relative overflow-hidden bg-white dark:bg-black">
 
       {/* Globe */}
       <div className="absolute inset-0 overflow-hidden">
-
         <Image
           src="/images/globe.png"
           alt="Globe"
           width={1080}
           height={1620}
           priority
-          className="
-            absolute
-            left-1/2
-            bottom-0
-            -translate-x-1/2
-            w-230
-            max-w-none
-            h-auto
-            object-contain
-            pointer-events-none
-            select-none
-          "
+          className="pointer-events-none absolute bottom-0 left-1/2 h-auto w-230 max-w-none -translate-x-1/2 object-contain select-none opacity-40 dark:opacity-100"
         />
-
       </div>
 
       {/* Gradient Overlay */}
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/10 via-black/20 to-black" />
+      <div className="absolute inset-0 bg-linear-to-b from-white/10 via-white/40 to-white dark:from-black/10 dark:via-black/20 dark:to-black" />
 
       {/* Content */}
 
@@ -72,7 +59,7 @@ export default function StatsSection() {
 
         <div className="mx-auto max-w-4xl text-center">
 
-          <h2 className="text-2xl font-light leading-tight text-white md:text-4xl">
+          <h2 className="text-2xl font-light leading-tight text-slate-900 dark:text-white md:text-4xl">
             Assisting over{" "}
             <span className="font-semibold">
               15,000
@@ -91,28 +78,17 @@ export default function StatsSection() {
           {stats.map((item) => (
             <div
               key={item.label}
-              className="
-                rounded-3xl
-                border
-                border-white/10
-                bg-black/65
-                p-10
-                backdrop-blur-md
-                transition-all
-                duration-300
-                hover:-translate-y-2
-                hover:border-violet-500/40
-              "
+              className="rounded-3xl border border-slate-200 bg-white/80 p-10 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/40 dark:border-white/10 dark:bg-black/65"
             >
-              <div className="mb-20 text-white">
+              <div className="mb-20 text-slate-900 dark:text-white">
                 {item.icon}
               </div>
 
-              <h3 className="text-6xl font-bold text-white">
+              <h3 className="text-6xl font-bold text-slate-900 dark:text-white">
                 {item.value}
               </h3>
 
-              <p className="mt-3 text-xl text-zinc-300">
+              <p className="mt-3 text-xl text-slate-600 dark:text-zinc-300">
                 {item.label}
               </p>
             </div>
