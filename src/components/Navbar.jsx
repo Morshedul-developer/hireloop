@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const navLinks = [
   {
@@ -22,6 +22,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   return (
     <nav className="sticky top-0 z-50 bg-[#151518]/80 backdrop-blur-md">
@@ -59,6 +60,17 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+
+            {/* Theme Toggle */}
+
+            <button
+              type="button"
+              onClick={() => setIsDark((prev) => !prev)}
+              aria-label="Toggle theme"
+              className="rounded-lg p-2 text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+            >
+              {isDark ? <Moon size={20} /> : <Sun size={20} />}
+            </button>
 
             {/* Divider */}
 
@@ -104,6 +116,21 @@ export default function Navbar() {
           }`}
         >
           <div className="rounded-2xl bg-[#1F1F22] p-6">
+
+            <div className="mb-5 flex items-center justify-between">
+              <span className="text-sm font-medium text-zinc-400">Theme</span>
+
+              <button
+                type="button"
+                onClick={() => setIsDark((prev) => !prev)}
+                aria-label="Toggle theme"
+                className="rounded-lg p-2 text-zinc-300 transition hover:bg-zinc-800 hover:text-white"
+              >
+                {isDark ? <Moon size={20} /> : <Sun size={20} />}
+              </button>
+            </div>
+
+            <div className="mb-5 h-px bg-zinc-700" />
 
             <ul className="space-y-5">
               {navLinks.map((item) => (
