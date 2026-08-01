@@ -60,7 +60,7 @@ export default function Pricing() {
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
-    <section className="relative overflow-hidden bg-[#0b0b0e] py-20 text-white sm:py-28">
+    <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/2 -top-100 h-192 w-3xl -translate-x-1/2 rounded-full bg-violet-600/20 blur-[130px]" />
         <div className="absolute -right-64 top-96 h-96 w-96 rounded-full bg-fuchsia-600/10 blur-[120px]" />
@@ -68,31 +68,32 @@ export default function Pricing() {
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
             <Sparkles size={16} /> Pricing that grows with you
           </span>
           <h1 className="mt-7 text-4xl font-semibold tracking-tight sm:text-6xl">
-            Invest in the work you <span className="text-violet-400">want next.</span>
+            Invest in the work you{" "}
+            <span className="text-violet-600 dark:text-violet-400">want next.</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-zinc-400">
             Whether you are looking for your next role or building a brilliant team,
             HireLoop makes every move count.
           </p>
 
-          <div className="mt-10 inline-flex items-center rounded-full border border-white/10 bg-white/5 p-1.5 text-sm font-medium">
+          <div className="mt-10 inline-flex items-center rounded-full border border-slate-200 bg-slate-100 p-1.5 text-sm font-medium dark:border-white/10 dark:bg-white/5">
             <button
               type="button"
               onClick={() => setIsAnnual(false)}
-              className={`rounded-full px-5 py-2.5 transition ${!isAnnual ? "bg-white text-zinc-950 shadow" : "text-zinc-400 hover:text-white"}`}
+              className={`rounded-full px-5 py-2.5 transition ${!isAnnual ? "bg-white text-zinc-950 shadow" : "text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white"}`}
             >
               Monthly
             </button>
             <button
               type="button"
               onClick={() => setIsAnnual(true)}
-              className={`rounded-full px-5 py-2.5 transition ${isAnnual ? "bg-white text-zinc-950 shadow" : "text-zinc-400 hover:text-white"}`}
+              className={`rounded-full px-5 py-2.5 transition ${isAnnual ? "bg-white text-zinc-950 shadow" : "text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-white"}`}
             >
-              Annual <span className="ml-1 text-xs font-bold text-violet-600">Save 17%</span>
+              Annual <span className="ml-1 text-xs font-bold text-violet-600 dark:text-violet-400">Save 17%</span>
             </button>
           </div>
         </div>
@@ -103,7 +104,11 @@ export default function Pricing() {
             return (
               <article
                 key={plan.name}
-                className={`relative flex flex-col rounded-3xl border p-8 transition duration-300 hover:-translate-y-1 ${plan.featured ? "border-violet-400 bg-linear-to-b from-violet-500/20 to-[#17131e] shadow-[0_20px_80px_rgba(124,58,237,.22)]" : "border-white/10 bg-white/[0.035] hover:border-white/20"}`}
+                className={`relative flex flex-col rounded-3xl border p-8 transition duration-300 hover:-translate-y-1 ${
+                  plan.featured
+                    ? "border-violet-400 bg-linear-to-b from-violet-100 to-white shadow-[0_20px_80px_rgba(124,58,237,.12)] dark:from-violet-500/20 dark:to-[#17131e] dark:shadow-[0_20px_80px_rgba(124,58,237,.22)]"
+                    : "border-slate-200 bg-slate-50 hover:border-slate-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-white/20"
+                }`}
               >
                 {plan.featured && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-violet-500 px-4 py-1 text-xs font-bold tracking-wide text-white">
@@ -111,26 +116,30 @@ export default function Pricing() {
                   </span>
                 )}
                 <h2 className="text-xl font-semibold">{plan.name}</h2>
-                <p className="mt-3 min-h-12 text-sm leading-6 text-zinc-400">{plan.description}</p>
+                <p className="mt-3 min-h-12 text-sm leading-6 text-slate-600 dark:text-zinc-400">{plan.description}</p>
                 <div className="mt-8 flex items-end gap-1">
                   <span className="text-5xl font-semibold tracking-tight">${price}</span>
-                  <span className="mb-1 text-sm text-zinc-400">/ month</span>
+                  <span className="mb-1 text-sm text-slate-500 dark:text-zinc-400">/ month</span>
                 </div>
-                <p className="mt-2 h-5 text-sm text-zinc-500">
+                <p className="mt-2 h-5 text-sm text-slate-500 dark:text-zinc-500">
                   {isAnnual && price > 0 ? "Billed annually" : price === 0 ? "Free forever" : "Billed monthly"}
                 </p>
                 <Link
                   href={plan.name === "Teams" ? "/contact" : "/register"}
-                  className={`mt-8 rounded-xl px-5 py-3.5 text-center text-sm font-semibold transition ${plan.featured ? "bg-violet-500 text-white hover:bg-violet-400" : "border border-white/15 bg-white/5 hover:bg-white/10"}`}
+                  className={`mt-8 rounded-xl px-5 py-3.5 text-center text-sm font-semibold transition ${
+                    plan.featured
+                      ? "bg-violet-500 text-white hover:bg-violet-400"
+                      : "border border-slate-300 bg-white hover:bg-slate-50 dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10"
+                  }`}
                 >
                   {plan.action}
                 </Link>
-                <div className="my-8 border-t border-white/10" />
-                <p className="text-sm font-medium text-zinc-300">What&apos;s included:</p>
+                <div className="my-8 border-t border-slate-200 dark:border-white/10" />
+                <p className="text-sm font-medium text-slate-700 dark:text-zinc-300">What&apos;s included:</p>
                 <ul className="mt-5 space-y-4">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 text-sm text-zinc-400">
-                      <Check className="mt-0.5 shrink-0 text-violet-400" size={16} />
+                    <li key={feature} className="flex gap-3 text-sm text-slate-600 dark:text-zinc-400">
+                      <Check className="mt-0.5 shrink-0 text-violet-600 dark:text-violet-400" size={16} />
                       {feature}
                     </li>
                   ))}
@@ -140,14 +149,14 @@ export default function Pricing() {
           })}
         </div>
 
-        <div className="mt-24 grid gap-10 border-t border-white/10 pt-16 lg:grid-cols-[.85fr_1.15fr] lg:gap-24">
+        <div className="mt-24 grid gap-10 border-t border-slate-200 pt-16 dark:border-white/10 lg:grid-cols-[.85fr_1.15fr] lg:gap-24">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-400">Questions, answered</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">Questions, answered</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">Everything should feel clear from the start.</h2>
-            <p className="mt-5 max-w-md leading-7 text-zinc-400">Need a hand choosing a plan? Our team is here to help you find the right fit.</p>
-            <Link href="/contact" className="mt-7 inline-block text-sm font-semibold text-violet-300 hover:text-violet-200">Chat with our team →</Link>
+            <p className="mt-5 max-w-md leading-7 text-slate-600 dark:text-zinc-400">Need a hand choosing a plan? Our team is here to help you find the right fit.</p>
+            <Link href="/contact" className="mt-7 inline-block text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200">Chat with our team →</Link>
           </div>
-          <div className="divide-y divide-white/10 border-y border-white/10">
+          <div className="divide-y divide-slate-200 border-y border-slate-200 dark:divide-white/10 dark:border-white/10">
             {faqs.map(([question, answer], index) => (
               <div key={question}>
                 <button
@@ -157,9 +166,9 @@ export default function Pricing() {
                   aria-expanded={openFaq === index}
                 >
                   {question}
-                  <ChevronDown className={`shrink-0 text-violet-300 transition ${openFaq === index ? "rotate-180" : ""}`} size={20} />
+                  <ChevronDown className={`shrink-0 text-violet-600 transition dark:text-violet-300 ${openFaq === index ? "rotate-180" : ""}`} size={20} />
                 </button>
-                {openFaq === index && <p className="-mt-2 pb-6 pr-10 text-sm leading-7 text-zinc-400">{answer}</p>}
+                {openFaq === index && <p className="-mt-2 pb-6 pr-10 text-sm leading-7 text-slate-600 dark:text-zinc-400">{answer}</p>}
               </div>
             ))}
           </div>
