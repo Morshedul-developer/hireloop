@@ -113,14 +113,7 @@ export default function Navbar() {
             <div className="mb-5 flex items-center justify-between">
               <span className="text-sm font-medium text-slate-500 dark:text-zinc-400">Theme</span>
 
-              <button
-                type="button"
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-                className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-              >
-                {isDark ? <Moon size={20} /> : <Sun size={20} />}
-              </button>
+              <ThemeToggle />
             </div>
 
             <div className="mb-5 h-px bg-slate-300 dark:bg-zinc-700" />
