@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/context/ThemeContext";
+import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   {
@@ -23,8 +23,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md dark:bg-[#151518]/80">
