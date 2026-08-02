@@ -63,14 +63,7 @@ export default function Navbar() {
 
             {/* Theme Toggle */}
 
-            <button
-              type="button"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white"
-            >
-              {isDark ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
+            <ThemeToggle className="mr-2" />
 
             {/* Divider */}
 
