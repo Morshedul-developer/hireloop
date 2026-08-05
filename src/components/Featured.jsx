@@ -155,7 +155,7 @@ export default function FeaturedJobs() {
                 onClick={() =>
                   toast.success(`Application sent for ${job.title} at ${job.company}!`)
                 }
-                className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-blue-600 dark:bg-white/10 dark:group-hover:bg-blue-500"
+                className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-blue-600 dark:bg-white/10 dark:group-hover:bg-blue-500"
               >
                 Apply Now
                 <BriefcaseBusiness size={18} />
