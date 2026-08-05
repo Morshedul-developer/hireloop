@@ -114,13 +114,8 @@ export default function FeaturedJobs() {
               {/* Logo */}
 
               <div className="mt-10 flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-white/5">
-                  <Image
-                    src={job.logo}
-                    alt={job.company}
-                    width={40}
-                    height={40}
-                  />
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 text-lg font-bold text-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-blue-300">
+                  {companyInitials(job.company)}
                 </div>
 
                 <div>
