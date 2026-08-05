@@ -50,6 +50,16 @@ const jobs = [
   },
 ];
 
+function companyInitials(name) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+}
+
 export default function FeaturedJobs() {
   return (
     <section className="bg-slate-50 py-24 dark:bg-[#0b0b0e]">
