@@ -356,7 +356,7 @@ export default function Jobs({ initialCategory, initialQuery }) {
                     onClick={() =>
                       toast.success(`Application sent for ${job.title} at ${job.company}!`)
                     }
-                    className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-violet-500 dark:bg-white/10"
+                    className="mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-slate-900 py-3 font-semibold text-white transition group-hover:bg-violet-500 dark:bg-white/10"
                   >
                     Apply Now
                     <BriefcaseBusiness size={18} />
