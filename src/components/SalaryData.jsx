@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { TrendingUp, Users, Wallet, Sparkles } from "lucide-react";
 
 const roles = [
@@ -15,7 +16,28 @@ const roles = [
   { title: "Sales Executive", category: "Marketing & Sales", experience: "1-3 yrs", min: 30, avg: 45, max: 70 },
 ];
 
+const categories = [
+  "All Roles",
+  "Technology",
+  "Design",
+  "Marketing & Sales",
+  "Finance & Accounting",
+  "Engineering",
+  "Human Resources",
+];
+
 export default function SalaryData() {
+  const [activeCategory, setActiveCategory] = useState("All Roles");
+
+  const filteredRoles = useMemo(() => {
+    const list =
+      activeCategory === "All Roles"
+        ? roles
+        : roles.filter((role) => role.category === activeCategory);
+    return [...list].sort((a, b) => b.avg - a.avg);
+  }, [activeCategory]);
+
+  const maxAvg = Math.max(...roles.map((role) => role.avg));
   const highestPaying = [...roles].sort((a, b) => b.avg - a.avg)[0];
   const overallAverage = Math.round(
     roles.reduce((sum, role) => sum + role.avg, 0) / roles.length
@@ -76,6 +98,49 @@ export default function SalaryData() {
             <p className="mt-4 text-sm text-slate-500 dark:text-zinc-400">Verified data points</p>
             <p className="mt-1 text-2xl font-semibold">12,400+</p>
             <p className="mt-1 text-sm text-slate-500 dark:text-zinc-500">Submitted by real employees</p>
+          </div>
+        </div>
+
+        {/* Category filter */}
+
+        <div className="mx-auto mt-16 flex max-w-5xl flex-wrap justify-center gap-3">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setActiveCategory(category)}
+              className={`cursor-pointer rounded-full px-5 py-2.5 text-sm font-medium transition ${
+                activeCategory === category
+                  ? "bg-violet-600 text-white"
+                  : "border border-slate-200 bg-slate-50 text-slate-600 hover:border-violet-300 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:text-white"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Bar chart */}
+
+        <div className="mx-auto mt-10 max-w-5xl rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+          <h2 className="text-lg font-semibold">Average monthly salary by role</h2>
+          <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">In BDT thousands (৳k)</p>
+
+          <div className="mt-8 space-y-5">
+            {filteredRoles.map((role) => (
+              <div key={role.title}>
+                <div className="mb-1.5 flex items-baseline justify-between text-sm">
+                  <span className="font-medium text-slate-700 dark:text-zinc-200">{role.title}</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">৳{role.avg}k</span>
+                </div>
+                <div className="h-5 w-full rounded-full bg-slate-200 dark:bg-white/5">
+                  <div
+                    className="h-5 rounded-full bg-violet-600"
+                    style={{ width: `${(role.avg / maxAvg) * 100}%` }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
