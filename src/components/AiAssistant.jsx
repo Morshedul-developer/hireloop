@@ -1,6 +1,8 @@
 "use client";
 
-import { Sparkles, Bot } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { Sparkles, Send, Bot } from "lucide-react";
 
 const chatLog = [
   {
@@ -22,6 +24,15 @@ const chatLog = [
 ];
 
 export default function AiAssistant() {
+  const [prompt, setPrompt] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!prompt.trim()) return;
+    toast.success("HireLoop AI is coming soon — thanks for trying it early!");
+    setPrompt("");
+  }
+
   return (
     <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -85,6 +96,26 @@ export default function AiAssistant() {
                 </div>
               ))}
             </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="flex items-center gap-3 border-t border-slate-200 p-4 dark:border-white/10"
+            >
+              <input
+                type="text"
+                value={prompt}
+                onChange={(event) => setPrompt(event.target.value)}
+                placeholder="Ask about jobs, your CV, or an interview..."
+                className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
+              />
+              <button
+                type="submit"
+                aria-label="Send message"
+                className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-xl bg-violet-600 text-white transition hover:bg-violet-500"
+              >
+                <Send size={18} />
+              </button>
+            </form>
           </div>
         </div>
       </div>
