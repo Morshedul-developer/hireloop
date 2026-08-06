@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Sparkles, Send, Bot } from "lucide-react";
+import {
+  Sparkles,
+  Send,
+  Bot,
+  FileText,
+  Target,
+  MessagesSquare,
+  Wand2,
+} from "lucide-react";
 
 const chatLog = [
   {
@@ -20,6 +28,33 @@ const chatLog = [
   {
     from: "ai",
     text: "Done. I highlighted your React and TypeScript projects, and reordered your experience to lead with frontend work.",
+  },
+];
+
+const features = [
+  {
+    icon: Target,
+    title: "Smart Job Matching",
+    description:
+      "The assistant reads your skills and goals, then ranks open roles by real fit instead of keyword matching.",
+  },
+  {
+    icon: FileText,
+    title: "Instant CV Tailoring",
+    description:
+      "Get your resume rewritten for each application in seconds, tuned to the exact role you're applying for.",
+  },
+  {
+    icon: MessagesSquare,
+    title: "Interview Practice",
+    description:
+      "Run mock interviews with follow-up questions based on the job description, then get direct feedback.",
+  },
+  {
+    icon: Wand2,
+    title: "Career Guidance",
+    description:
+      "Ask anything about salary ranges, career switches, or skill gaps and get grounded, specific answers.",
   },
 ];
 
@@ -117,6 +152,25 @@ export default function AiAssistant() {
               </button>
             </form>
           </div>
+        </div>
+
+        {/* Features */}
+
+        <div className="mt-24 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map(({ icon: Icon, title, description }) => (
+            <div
+              key={title}
+              className="rounded-2xl border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-violet-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-400/40"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                <Icon size={20} />
+              </div>
+              <h3 className="mt-5 font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                {description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
