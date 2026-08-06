@@ -1,7 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { TrendingUp, Users, Wallet, Sparkles } from "lucide-react";
+import Link from "next/link";
+import {
+  TrendingUp,
+  Users,
+  Wallet,
+  Sparkles,
+  Lock,
+  ChevronDown,
+} from "lucide-react";
 
 const roles = [
   { title: "DevOps Engineer", category: "Engineering", experience: "4-7 yrs", min: 65, avg: 100, max: 145 },
@@ -15,6 +23,8 @@ const roles = [
   { title: "HR Manager", category: "Human Resources", experience: "4-7 yrs", min: 35, avg: 55, max: 80 },
   { title: "Sales Executive", category: "Marketing & Sales", experience: "1-3 yrs", min: 30, avg: 45, max: 70 },
 ];
+
+const FREE_ROWS = 4;
 
 const categories = [
   "All Roles",
@@ -142,6 +152,75 @@ export default function SalaryData() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Detailed table with premium lock */}
+
+        <div className="mx-auto mt-10 max-w-5xl">
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/[0.035]">
+            <div className="grid grid-cols-4 gap-4 border-b border-slate-200 px-6 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:border-white/10 dark:text-zinc-500">
+              <span>Role</span>
+              <span>Experience</span>
+              <span>Category</span>
+              <span className="text-right">Salary range</span>
+            </div>
+
+            <div>
+              {filteredRoles.map((role, index) => (
+                <div
+                  key={role.title}
+                  className={`grid grid-cols-4 items-center gap-4 px-6 py-4 text-sm ${
+                    index >= FREE_ROWS ? "blur-sm select-none" : ""
+                  } ${index !== filteredRoles.length - 1 ? "border-b border-slate-200 dark:border-white/10" : ""}`}
+                >
+                  <span className="font-medium text-slate-900 dark:text-white">{role.title}</span>
+                  <span className="text-slate-600 dark:text-zinc-400">{role.experience}</span>
+                  <span className="text-slate-600 dark:text-zinc-400">{role.category}</span>
+                  <span className="text-right font-semibold text-slate-900 dark:text-white">
+                    ৳{role.min}k - ৳{role.max}k
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {filteredRoles.length > FREE_ROWS && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex h-56 flex-col items-center justify-end gap-4 bg-linear-to-t from-slate-50 via-slate-50/95 to-transparent pb-8 dark:from-[#0b0b0e] dark:via-[#0b0b0e]/95">
+                <div className="pointer-events-auto flex flex-col items-center gap-3 text-center">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-violet-600 text-white">
+                    <Lock size={18} />
+                  </div>
+                  <p className="max-w-xs text-sm text-slate-600 dark:text-zinc-400">
+                    Unlock every role's full salary range and history with HireLoop Pro.
+                  </p>
+                  <Link
+                    href="/pricing"
+                    className="rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-500"
+                  >
+                    Upgrade to Pro
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+
+        <div className="mx-auto mt-16 flex max-w-3xl flex-col items-center gap-5 rounded-3xl border border-violet-400/20 bg-violet-400/10 px-8 py-10 text-center dark:border-violet-500/20 dark:bg-violet-500/10">
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            Negotiate with confidence
+          </h2>
+          <p className="max-w-xl text-slate-600 dark:text-zinc-400">
+            HireLoop Pro members get full salary breakdowns by company size,
+            location, and experience — plus AI-powered offer comparisons.
+          </p>
+          <Link
+            href="/pricing"
+            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-7 py-3.5 font-semibold text-white transition hover:bg-violet-500"
+          >
+            See Pro plans
+            <ChevronDown className="-rotate-90" size={18} />
+          </Link>
         </div>
       </div>
     </section>
