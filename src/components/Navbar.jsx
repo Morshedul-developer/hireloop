@@ -19,6 +19,10 @@ const navLinks = [
     name: "Pricing",
     href: "/pricing",
   },
+  {
+    name: "AI Assistant",
+    href: "/ai",
+  },
 ];
 
 export default function Navbar() {
