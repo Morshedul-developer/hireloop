@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import {
   Search,
   Sparkles,
@@ -11,6 +12,9 @@ import {
   Bot,
   Wallet,
   ChevronDown,
+  Mail,
+  MessageCircle,
+  Check,
 } from "lucide-react";
 
 const categories = [
@@ -77,6 +81,12 @@ const faqs = [
     answer:
       "Employers submit a work email and business registration during signup. Our team reviews and approves verified companies within 24 hours.",
   },
+];
+
+const supportTiers = [
+  { plan: "Starter", response: "Community support", detail: "Help Center + email, replies within 48h" },
+  { plan: "Pro", response: "Priority support", detail: "Live chat + email, replies within 4h" },
+  { plan: "Teams", response: "Dedicated support", detail: "A named specialist for your hiring team" },
 ];
 
 export default function HelpCenter() {
@@ -205,6 +215,73 @@ export default function HelpCenter() {
                 No questions match your search.
               </p>
             )}
+          </div>
+        </div>
+
+        {/* Support tiers */}
+
+        <div className="mx-auto mt-24 max-w-5xl border-t border-slate-200 pt-16 dark:border-white/10">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              Support that scales with your plan
+            </h2>
+            <p className="mt-4 text-slate-600 dark:text-zinc-400">
+              Every HireLoop member gets help — Pro and Teams get to the front
+              of the line.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {supportTiers.map((tier) => (
+              <div
+                key={tier.plan}
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/[0.035]"
+              >
+                <div className="flex items-center gap-2 text-sm font-semibold text-violet-600 dark:text-violet-300">
+                  <Check size={16} />
+                  {tier.plan}
+                </div>
+                <p className="mt-3 font-semibold">{tier.response}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                  {tier.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-8 text-center">
+            <Link
+              href="/pricing"
+              className="text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+            >
+              Compare plans →
+            </Link>
+          </p>
+        </div>
+
+        {/* Contact CTA */}
+
+        <div className="mx-auto mt-16 flex max-w-3xl flex-col items-center gap-5 rounded-3xl border border-violet-400/20 bg-violet-400/10 px-8 py-10 text-center dark:border-violet-500/20 dark:bg-violet-500/10">
+          <h2 className="text-2xl font-semibold sm:text-3xl">Still need help?</h2>
+          <p className="max-w-xl text-slate-600 dark:text-zinc-400">
+            Our support team is ready to answer questions about your account,
+            applications, or hiring pipeline.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="mailto:support@hireloop.com"
+              className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-7 py-3.5 font-semibold text-white transition hover:bg-violet-500"
+            >
+              <Mail size={18} />
+              Email support
+            </a>
+            <button
+              type="button"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-white px-7 py-3.5 font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+            >
+              <MessageCircle size={18} />
+              Start live chat
+            </button>
           </div>
         </div>
       </div>
