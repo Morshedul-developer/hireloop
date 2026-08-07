@@ -10,6 +10,7 @@ import {
   Building2,
   Bot,
   Wallet,
+  ChevronDown,
 } from "lucide-react";
 
 const categories = [
@@ -45,8 +46,42 @@ const categories = [
   },
 ];
 
+const faqs = [
+  {
+    question: "How do I create a HireLoop account?",
+    answer:
+      "Click \"Get Started\" in the top navigation, enter your email, and verify your address. You can complete your profile anytime from your dashboard.",
+  },
+  {
+    question: "Is HireLoop free to use?",
+    answer:
+      "Yes. The Starter plan is free forever and covers unlimited job searches and application tracking. Pro and Teams unlock AI tools and advanced insights.",
+  },
+  {
+    question: "How does the AI assistant tailor my CV?",
+    answer:
+      "It reads the job description and your existing CV, then reorders and rewrites sections to highlight the most relevant experience for that specific role.",
+  },
+  {
+    question: "Where do the salary benchmarks come from?",
+    answer:
+      "Salary data is aggregated from verified employer postings and anonymized submissions from HireLoop members, refreshed every quarter.",
+  },
+  {
+    question: "Can I cancel my subscription anytime?",
+    answer:
+      "Absolutely. You can upgrade, downgrade, or cancel from your billing settings at any time, with no cancellation fees.",
+  },
+  {
+    question: "How do employers verify their company on HireLoop?",
+    answer:
+      "Employers submit a work email and business registration during signup. Our team reviews and approves verified companies within 24 hours.",
+  },
+];
+
 export default function HelpCenter() {
   const [query, setQuery] = useState("");
+  const [openFaq, setOpenFaq] = useState(0);
 
   const normalizedQuery = query.trim().toLowerCase();
 
@@ -56,6 +91,15 @@ export default function HelpCenter() {
       (category) =>
         category.title.toLowerCase().includes(normalizedQuery) ||
         category.description.toLowerCase().includes(normalizedQuery)
+    );
+  }, [normalizedQuery]);
+
+  const filteredFaqs = useMemo(() => {
+    if (!normalizedQuery) return faqs;
+    return faqs.filter(
+      (faq) =>
+        faq.question.toLowerCase().includes(normalizedQuery) ||
+        faq.answer.toLowerCase().includes(normalizedQuery)
     );
   }, [normalizedQuery]);
 
@@ -125,6 +169,43 @@ export default function HelpCenter() {
               No topics match your search.
             </p>
           )}
+        </div>
+
+        {/* FAQ */}
+
+        <div className="mx-auto mt-24 max-w-3xl border-t border-slate-200 pt-16 dark:border-white/10">
+          <h2 className="text-center text-3xl font-semibold tracking-tight sm:text-4xl">
+            Frequently asked questions
+          </h2>
+
+          <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200 dark:divide-white/10 dark:border-white/10">
+            {filteredFaqs.map((faq, index) => (
+              <div key={faq.question}>
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
+                  className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left font-medium"
+                  aria-expanded={openFaq === index}
+                >
+                  {faq.question}
+                  <ChevronDown
+                    className={`shrink-0 text-violet-600 transition dark:text-violet-300 ${openFaq === index ? "rotate-180" : ""}`}
+                    size={20}
+                  />
+                </button>
+                {openFaq === index && (
+                  <p className="-mt-2 pb-6 pr-10 text-sm leading-7 text-slate-600 dark:text-zinc-400">
+                    {faq.answer}
+                  </p>
+                )}
+              </div>
+            ))}
+            {filteredFaqs.length === 0 && (
+              <p className="py-10 text-center text-slate-500 dark:text-zinc-500">
+                No questions match your search.
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </section>
