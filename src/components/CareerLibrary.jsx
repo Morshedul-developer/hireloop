@@ -1,9 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Search } from "lucide-react";
+import {
+  Sparkles,
+  Search,
+  FileText,
+  MessagesSquare,
+  TrendingUp,
+  Globe,
+  Wallet,
+} from "lucide-react";
+
+const categories = [
+  { name: "All Topics", icon: Sparkles },
+  { name: "Resume & CV", icon: FileText },
+  { name: "Interviews", icon: MessagesSquare },
+  { name: "Career Growth", icon: TrendingUp },
+  { name: "Remote Work", icon: Globe },
+  { name: "Salary & Negotiation", icon: Wallet },
+];
 
 export default function CareerLibrary() {
+  const [activeCategory, setActiveCategory] = useState("All Topics");
   const [query, setQuery] = useState("");
 
   return (
@@ -44,6 +62,26 @@ export default function CareerLibrary() {
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-13 pr-5 text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
             />
           </div>
+        </div>
+
+        {/* Category filter */}
+
+        <div className="mx-auto mt-14 flex max-w-5xl flex-wrap justify-center gap-3">
+          {categories.map(({ name, icon: Icon }) => (
+            <button
+              key={name}
+              type="button"
+              onClick={() => setActiveCategory(name)}
+              className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${
+                activeCategory === name
+                  ? "bg-violet-600 text-white"
+                  : "border border-slate-200 bg-slate-50 text-slate-600 hover:border-violet-300 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:text-white"
+              }`}
+            >
+              <Icon size={16} />
+              {name}
+            </button>
+          ))}
         </div>
       </div>
     </section>
