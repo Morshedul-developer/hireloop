@@ -1,8 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import toast from "react-hot-toast";
-import { Sparkles, Send, Mail, Phone, MapPin } from "lucide-react";
+import {
+  Sparkles,
+  Send,
+  Mail,
+  Phone,
+  MapPin,
+  MessagesSquare,
+} from "lucide-react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const reasons = [
@@ -198,6 +206,23 @@ export default function Contact() {
                   </a>
                 ))}
               </div>
+            </div>
+
+            <div className="rounded-3xl border border-violet-400/20 bg-violet-400/10 p-8 dark:border-violet-500/20 dark:bg-violet-500/10">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
+                <MessagesSquare size={18} />
+              </div>
+              <h2 className="mt-5 font-semibold">Prefer self-serve?</h2>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                Most account and billing questions are answered in our Help
+                Center.
+              </p>
+              <Link
+                href="/help-center"
+                className="mt-4 inline-block text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+              >
+                Visit the Help Center →
+              </Link>
             </div>
           </div>
         </div>
