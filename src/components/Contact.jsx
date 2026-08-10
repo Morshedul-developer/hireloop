@@ -2,13 +2,41 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Sparkles, Send } from "lucide-react";
+import { Sparkles, Send, Mail, Phone, MapPin } from "lucide-react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const reasons = [
   "General inquiry",
   "Sales / Teams plan",
   "Account support",
   "Press & media",
+];
+
+const contactDetails = [
+  {
+    icon: Mail,
+    label: "Email us",
+    value: "support@hireloop.com",
+    href: "mailto:support@hireloop.com",
+  },
+  {
+    icon: Phone,
+    label: "Call us",
+    value: "+880 1234-567890",
+    href: "tel:+8801234567890",
+  },
+  {
+    icon: MapPin,
+    label: "Visit us",
+    value: "Gulshan Avenue, Dhaka 1212, Bangladesh",
+    href: "https://maps.google.com/?q=Gulshan+Avenue+Dhaka",
+  },
+];
+
+const socials = [
+  { icon: FaFacebookF, href: "#", label: "Facebook" },
+  { icon: FaInstagram, href: "#", label: "Instagram" },
+  { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
 ];
 
 export default function Contact() {
@@ -55,9 +83,11 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Form */}
+        {/* Form + info */}
 
-        <div className="mx-auto mt-16 max-w-2xl">
+        <div className="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-[1.2fr_1fr]">
+          {/* Form */}
+
           <form
             onSubmit={handleSubmit}
             className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]"
@@ -131,6 +161,45 @@ export default function Contact() {
               Send message
             </button>
           </form>
+
+          {/* Info */}
+
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+              <h2 className="font-semibold">Contact details</h2>
+
+              <div className="mt-6 space-y-5">
+                {contactDetails.map(({ icon: Icon, label, value, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="flex items-start gap-4 transition hover:opacity-80"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                      <Icon size={18} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-slate-500 dark:text-zinc-500">{label}</p>
+                      <p className="font-medium text-slate-900 dark:text-white">{value}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <div className="mt-8 flex items-center gap-3 border-t border-slate-200 pt-6 dark:border-white/10">
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="rounded-xl bg-white p-3 text-slate-600 transition hover:bg-violet-600 hover:text-white dark:bg-white/5 dark:text-zinc-300"
+                  >
+                    <Icon size={18} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
