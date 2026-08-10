@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { Sparkles, Send } from "lucide-react";
 
 const reasons = [
@@ -20,6 +21,12 @@ export default function Contact() {
 
   function updateField(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    toast.success("Message sent — our team will reply within 24 hours!");
+    setForm({ name: "", email: "", reason: reasons[0], message: "" });
   }
 
   return (
@@ -51,7 +58,10 @@ export default function Contact() {
         {/* Form */}
 
         <div className="mx-auto mt-16 max-w-2xl">
-          <form className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]"
+          >
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
                 <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">
