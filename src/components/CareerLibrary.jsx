@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import {
   Sparkles,
@@ -86,6 +86,19 @@ export default function CareerLibrary() {
   const [activeCategory, setActiveCategory] = useState("All Topics");
   const [query, setQuery] = useState("");
 
+  const filteredArticles = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    return articles.filter((article) => {
+      const matchesCategory =
+        activeCategory === "All Topics" || article.category === activeCategory;
+      const matchesQuery =
+        !normalizedQuery ||
+        article.title.toLowerCase().includes(normalizedQuery) ||
+        article.excerpt.toLowerCase().includes(normalizedQuery);
+      return matchesCategory && matchesQuery;
+    });
+  }, [activeCategory, query]);
+
   return (
     <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -149,40 +162,46 @@ export default function CareerLibrary() {
         {/* Article grid */}
 
         <div className="mx-auto mt-14 max-w-6xl">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article) => (
-              <article
-                key={article.title}
-                className="flex flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-400/40"
-              >
-                <span className="inline-flex w-fit rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700 dark:bg-violet-500/10 dark:text-violet-300">
-                  {article.category}
-                </span>
-
-                <h3 className="mt-4 text-lg font-semibold leading-snug">{article.title}</h3>
-
-                <p className="mt-3 flex-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
-                  {article.excerpt}
-                </p>
-
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-500">
-                    <Clock3 size={14} />
-                    {article.readTime}
+          {filteredArticles.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredArticles.map((article) => (
+                <article
+                  key={article.title}
+                  className="flex flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-400/40"
+                >
+                  <span className="inline-flex w-fit rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700 dark:bg-violet-500/10 dark:text-violet-300">
+                    {article.category}
                   </span>
 
-                  <button
-                    type="button"
-                    onClick={() => toast.success("Full article coming soon!")}
-                    className="inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-violet-600 transition hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
-                  >
-                    Read article
-                    <ArrowRight size={15} />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
+                  <h3 className="mt-4 text-lg font-semibold leading-snug">{article.title}</h3>
+
+                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                    {article.excerpt}
+                  </p>
+
+                  <div className="mt-6 flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-500">
+                      <Clock3 size={14} />
+                      {article.readTime}
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => toast.success("Full article coming soon!")}
+                      className="inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-violet-600 transition hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+                    >
+                      Read article
+                      <ArrowRight size={15} />
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-slate-500 dark:text-zinc-500">
+              No articles match your search.
+            </p>
+          )}
         </div>
       </div>
     </section>
