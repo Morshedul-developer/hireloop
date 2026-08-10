@@ -7,6 +7,7 @@ import {
   Search,
   Clock3,
   ArrowRight,
+  Mail,
   FileText,
   MessagesSquare,
   TrendingUp,
@@ -85,6 +86,7 @@ const articles = [
 export default function CareerLibrary() {
   const [activeCategory, setActiveCategory] = useState("All Topics");
   const [query, setQuery] = useState("");
+  const [email, setEmail] = useState("");
 
   const filteredArticles = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -98,6 +100,13 @@ export default function CareerLibrary() {
       return matchesCategory && matchesQuery;
     });
   }, [activeCategory, query]);
+
+  function handleSubscribe(event) {
+    event.preventDefault();
+    if (!email.trim()) return;
+    toast.success("You're subscribed — new guides land in your inbox weekly!");
+    setEmail("");
+  }
 
   return (
     <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
@@ -202,6 +211,39 @@ export default function CareerLibrary() {
               No articles match your search.
             </p>
           )}
+        </div>
+
+        {/* Newsletter CTA */}
+
+        <div className="mx-auto mt-24 flex max-w-3xl flex-col items-center gap-5 rounded-3xl border border-violet-400/20 bg-violet-400/10 px-8 py-10 text-center dark:border-violet-500/20 dark:bg-violet-500/10">
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            New guides in your inbox
+          </h2>
+          <p className="max-w-xl text-slate-600 dark:text-zinc-400">
+            One email a week with a practical career guide — no spam, unsubscribe
+            anytime.
+          </p>
+
+          <form
+            onSubmit={handleSubscribe}
+            className="flex w-full max-w-md flex-col gap-3 sm:flex-row"
+          >
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@email.com"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
+            />
+            <button
+              type="submit"
+              className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-500"
+            >
+              <Mail size={16} />
+              Subscribe
+            </button>
+          </form>
         </div>
       </div>
     </section>
