@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import {
   Sparkles,
   Search,
+  Clock3,
+  ArrowRight,
   FileText,
   MessagesSquare,
   TrendingUp,
@@ -18,6 +21,65 @@ const categories = [
   { name: "Career Growth", icon: TrendingUp },
   { name: "Remote Work", icon: Globe },
   { name: "Salary & Negotiation", icon: Wallet },
+];
+
+const articles = [
+  {
+    title: "How to write a CV that actually gets past recruiters",
+    category: "Resume & CV",
+    excerpt:
+      "The structure, keywords, and formatting choices that help your CV clear applicant tracking systems and land on a real desk.",
+    readTime: "6 min read",
+  },
+  {
+    title: "5 interview questions Bangladeshi tech employers actually ask",
+    category: "Interviews",
+    excerpt:
+      "Beyond \"tell me about yourself\" — how to prepare for the questions that show up again and again in local tech interviews.",
+    readTime: "8 min read",
+  },
+  {
+    title: "How to negotiate your salary without losing the offer",
+    category: "Salary & Negotiation",
+    excerpt:
+      "A practical script for countering an offer, backed by real HireLoop salary data, without sounding difficult to work with.",
+    readTime: "5 min read",
+  },
+  {
+    title: "Switching careers at 30: what actually transfers",
+    category: "Career Growth",
+    excerpt:
+      "Which of your existing skills are more transferable than you think, and how to reframe them for a completely new field.",
+    readTime: "7 min read",
+  },
+  {
+    title: "Landing your first fully remote job from Bangladesh",
+    category: "Remote Work",
+    excerpt:
+      "Time zones, payment methods, and the portfolio signals that make international employers comfortable hiring you remotely.",
+    readTime: "9 min read",
+  },
+  {
+    title: "The STAR method, explained with real answers",
+    category: "Interviews",
+    excerpt:
+      "A walkthrough of the Situation-Task-Action-Result framework using answers pulled from real successful interviews.",
+    readTime: "6 min read",
+  },
+  {
+    title: "What to do in your first 90 days at a new job",
+    category: "Career Growth",
+    excerpt:
+      "A simple plan for building trust, learning the org, and setting yourself up for your first performance review.",
+    readTime: "5 min read",
+  },
+  {
+    title: "Reading a job description like a recruiter does",
+    category: "Resume & CV",
+    excerpt:
+      "How to spot must-have requirements versus wish-list items, so you stop filtering yourself out of good-fit roles.",
+    readTime: "4 min read",
+  },
 ];
 
 export default function CareerLibrary() {
@@ -82,6 +144,45 @@ export default function CareerLibrary() {
               {name}
             </button>
           ))}
+        </div>
+
+        {/* Article grid */}
+
+        <div className="mx-auto mt-14 max-w-6xl">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {articles.map((article) => (
+              <article
+                key={article.title}
+                className="flex flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-400/40"
+              >
+                <span className="inline-flex w-fit rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700 dark:bg-violet-500/10 dark:text-violet-300">
+                  {article.category}
+                </span>
+
+                <h3 className="mt-4 text-lg font-semibold leading-snug">{article.title}</h3>
+
+                <p className="mt-3 flex-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                  {article.excerpt}
+                </p>
+
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-500">
+                    <Clock3 size={14} />
+                    {article.readTime}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() => toast.success("Full article coming soon!")}
+                    className="inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-violet-600 transition hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+                  >
+                    Read article
+                    <ArrowRight size={15} />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
