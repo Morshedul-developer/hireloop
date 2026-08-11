@@ -32,6 +32,14 @@ const colorGroups = [
   },
 ];
 
+const typeScale = [
+  { label: "Display", sample: "Land your next role", className: "text-5xl font-semibold tracking-tight" },
+  { label: "Heading 1", sample: "Featured Jobs", className: "text-4xl font-semibold tracking-tight" },
+  { label: "Heading 2", sample: "How can we help you?", className: "text-2xl font-semibold" },
+  { label: "Body", sample: "Real salary benchmarks from verified employers.", className: "text-base text-slate-600 dark:text-zinc-400" },
+  { label: "Caption", sample: "Verified Company", className: "text-sm text-slate-500 dark:text-zinc-500" },
+];
+
 export default function BrandGuideline() {
   function copyHex(hex) {
     navigator.clipboard?.writeText(hex);
@@ -137,6 +145,25 @@ export default function BrandGuideline() {
                     </button>
                   ))}
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Typography */}
+
+        <div className="mx-auto mt-20 max-w-5xl">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+            Typography
+          </h2>
+
+          <div className="mt-6 divide-y divide-slate-200 rounded-3xl border border-slate-200 bg-slate-50 dark:divide-white/10 dark:border-white/10 dark:bg-white/[0.035]">
+            {typeScale.map((type) => (
+              <div key={type.label} className="flex flex-col gap-2 p-6 sm:flex-row sm:items-center sm:gap-8">
+                <span className="w-28 shrink-0 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-zinc-500">
+                  {type.label}
+                </span>
+                <p className={type.className}>{type.sample}</p>
               </div>
             ))}
           </div>
