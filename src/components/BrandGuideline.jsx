@@ -2,9 +2,42 @@
 
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { Sparkles, Download, Check, X } from "lucide-react";
+import { Sparkles, Download, Check, X, Copy } from "lucide-react";
+
+const colorGroups = [
+  {
+    name: "Primary",
+    colors: [
+      { name: "Violet 600", hex: "#7C3AED", className: "bg-violet-600" },
+      { name: "Violet 500", hex: "#8B5CF6", className: "bg-violet-500" },
+      { name: "Violet 400", hex: "#A78BFA", className: "bg-violet-400" },
+    ],
+  },
+  {
+    name: "Accent",
+    colors: [
+      { name: "Blue 600", hex: "#2563EB", className: "bg-blue-600" },
+      { name: "Rose 500", hex: "#F43F5E", className: "bg-rose-500" },
+      { name: "Amber 400", hex: "#FBBF24", className: "bg-amber-400" },
+    ],
+  },
+  {
+    name: "Surfaces",
+    colors: [
+      { name: "Base dark", hex: "#0B0B0E", className: "bg-[#0b0b0e]" },
+      { name: "Panel dark", hex: "#151518", className: "bg-[#151518]" },
+      { name: "Footer dark", hex: "#050505", className: "bg-[#050505]" },
+      { name: "Base light", hex: "#FFFFFF", className: "border border-slate-200 bg-white" },
+    ],
+  },
+];
 
 export default function BrandGuideline() {
+  function copyHex(hex) {
+    navigator.clipboard?.writeText(hex);
+    toast.success(`Copied ${hex}`);
+  }
+
   return (
     <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -71,6 +104,41 @@ export default function BrandGuideline() {
                 background.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Color */}
+
+        <div className="mx-auto mt-20 max-w-5xl">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+            Color
+          </h2>
+
+          <div className="mt-6 space-y-10">
+            {colorGroups.map((group) => (
+              <div key={group.name}>
+                <p className="mb-4 text-sm font-medium text-slate-500 dark:text-zinc-500">{group.name}</p>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {group.colors.map((color) => (
+                    <button
+                      key={color.hex}
+                      type="button"
+                      onClick={() => copyHex(color.hex)}
+                      className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 text-left transition hover:-translate-y-1 hover:border-violet-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-400/40"
+                    >
+                      <div className={`h-20 w-full ${color.className}`} />
+                      <div className="flex items-center justify-between p-4">
+                        <div>
+                          <p className="text-sm font-medium">{color.name}</p>
+                          <p className="text-xs text-slate-500 dark:text-zinc-500">{color.hex}</p>
+                        </div>
+                        <Copy size={14} className="text-slate-400 transition group-hover:text-violet-600 dark:text-zinc-600 dark:group-hover:text-violet-300" />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
