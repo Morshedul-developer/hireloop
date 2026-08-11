@@ -40,6 +40,18 @@ const typeScale = [
   { label: "Caption", sample: "Verified Company", className: "text-sm text-slate-500 dark:text-zinc-500" },
 ];
 
+const doItems = [
+  "Use violet as the single accent color for actions and highlights.",
+  "Keep copy direct and specific — name the benefit, skip the fluff.",
+  "Pair dark surfaces with soft, blurred gradient glows, never hard edges.",
+];
+
+const dontItems = [
+  "Don't introduce new accent colors outside the palette.",
+  "Don't stretch or recolor the logo mark.",
+  "Don't use more than one font family across the product.",
+];
+
 export default function BrandGuideline() {
   function copyHex(hex) {
     navigator.clipboard?.writeText(hex);
@@ -166,6 +178,44 @@ export default function BrandGuideline() {
                 <p className={type.className}>{type.sample}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Voice & tone */}
+
+        <div className="mx-auto mt-20 max-w-5xl">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+            Voice &amp; tone
+          </h2>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+              <h3 className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400">
+                <Check size={18} /> Do
+              </h3>
+              <ul className="mt-5 space-y-4">
+                {doItems.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+              <h3 className="flex items-center gap-2 font-semibold text-rose-600 dark:text-rose-400">
+                <X size={18} /> Don&apos;t
+              </h3>
+              <ul className="mt-5 space-y-4">
+                {dontItems.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
