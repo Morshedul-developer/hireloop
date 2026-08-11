@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import toast from "react-hot-toast";
-import { Sparkles, Download } from "lucide-react";
+import { Sparkles, Download, Check, X } from "lucide-react";
 
 export default function BrandGuideline() {
   return (
@@ -37,6 +38,40 @@ export default function BrandGuideline() {
             <Download size={18} />
             Download brand assets
           </button>
+        </div>
+
+        {/* Logo */}
+
+        <div className="mx-auto mt-20 max-w-5xl">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-400">
+            Logo
+          </h2>
+
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            <div className="flex items-center justify-center rounded-3xl border border-slate-200 bg-slate-50 p-14 dark:border-white/10 dark:bg-white/[0.035]">
+              <Image src="/logo.png" alt="HireLoop logo on light" width={180} height={48} />
+            </div>
+            <div className="flex items-center justify-center rounded-3xl border border-white/10 bg-[#0b0b0e] p-14">
+              <Image src="/logo.png" alt="HireLoop logo on dark" width={180} height={48} />
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/[0.035]">
+              <Check className="mt-0.5 shrink-0 text-violet-600 dark:text-violet-400" size={18} />
+              <p className="text-sm text-slate-600 dark:text-zinc-400">
+                Keep clear space around the logo of at least the height of the
+                icon mark.
+              </p>
+            </div>
+            <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/[0.035]">
+              <X className="mt-0.5 shrink-0 text-rose-500" size={18} />
+              <p className="text-sm text-slate-600 dark:text-zinc-400">
+                Never place the logo on a busy photo or low-contrast
+                background.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
