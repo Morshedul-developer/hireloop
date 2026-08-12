@@ -1,6 +1,21 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
+import { useState } from "react";
+import {
+  Sparkles,
+  Newspaper,
+  Rocket,
+  Building2,
+  Mic2,
+} from "lucide-react";
+
+const categories = [
+  { name: "All Updates", icon: Sparkles },
+  { name: "Press Releases", icon: Newspaper },
+  { name: "Product Updates", icon: Rocket },
+  { name: "Company News", icon: Building2 },
+  { name: "In the Media", icon: Mic2 },
+];
 
 const stats = [
   { label: "Founded", value: "2022" },
@@ -10,6 +25,8 @@ const stats = [
 ];
 
 export default function Newsroom() {
+  const [activeCategory, setActiveCategory] = useState("All Updates");
+
   return (
     <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -47,6 +64,26 @@ export default function Newsroom() {
               <p className="text-2xl font-semibold sm:text-3xl">{stat.value}</p>
               <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">{stat.label}</p>
             </div>
+          ))}
+        </div>
+
+        {/* Category filter */}
+
+        <div className="mx-auto mt-16 flex max-w-5xl flex-wrap justify-center gap-3">
+          {categories.map(({ name, icon: Icon }) => (
+            <button
+              key={name}
+              type="button"
+              onClick={() => setActiveCategory(name)}
+              className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${
+                activeCategory === name
+                  ? "bg-violet-600 text-white"
+                  : "border border-slate-200 bg-slate-50 text-slate-600 hover:border-violet-300 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:text-white"
+              }`}
+            >
+              <Icon size={16} />
+              {name}
+            </button>
           ))}
         </div>
       </div>
