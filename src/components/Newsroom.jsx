@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import toast from "react-hot-toast";
 import {
   Sparkles,
+  Calendar,
+  ArrowRight,
   Newspaper,
   Rocket,
   Building2,
@@ -24,8 +27,58 @@ const stats = [
   { label: "Press mentions", value: "20+" },
 ];
 
+const stories = [
+  {
+    title: "HireLoop raises seed round to expand AI-matching across Bangladesh",
+    category: "Press Releases",
+    date: "July 2026",
+    excerpt:
+      "The new funding will grow the engineering team and accelerate the AI career assistant currently in early access.",
+  },
+  {
+    title: "Introducing HireLoop AI: your career assistant, always on",
+    category: "Product Updates",
+    date: "June 2026",
+    excerpt:
+      "CV tailoring, interview practice, and job matching in one conversation — now live for every HireLoop member.",
+  },
+  {
+    title: "HireLoop crosses 12,000 successful hires",
+    category: "Company News",
+    date: "May 2026",
+    excerpt:
+      "A milestone built on partnerships with over 500 verified employers across Dhaka, Chattogram, and remote-first teams.",
+  },
+  {
+    title: "\"The job board rethinking how Bangladesh hires\" — Tech Weekly",
+    category: "In the Media",
+    date: "April 2026",
+    excerpt:
+      "Tech Weekly profiles HireLoop's approach to salary transparency and AI-assisted job matching.",
+  },
+  {
+    title: "Salary transparency data now available to every job seeker",
+    category: "Product Updates",
+    date: "March 2026",
+    excerpt:
+      "Real benchmarks across roles, experience levels, and industries — free for Starter members, in full for Pro.",
+  },
+  {
+    title: "HireLoop named a rising startup to watch by Business Insight BD",
+    category: "In the Media",
+    date: "February 2026",
+    excerpt:
+      "Recognized alongside four other early-stage companies reshaping how Bangladeshis find work.",
+  },
+];
+
 export default function Newsroom() {
   const [activeCategory, setActiveCategory] = useState("All Updates");
+
+  const filteredStories = useMemo(() => {
+    if (activeCategory === "All Updates") return stories;
+    return stories.filter((story) => story.category === activeCategory);
+  }, [activeCategory]);
 
   return (
     <section className="relative overflow-hidden bg-white py-20 text-slate-900 dark:bg-[#0b0b0e] dark:text-white sm:py-28">
@@ -85,6 +138,45 @@ export default function Newsroom() {
               {name}
             </button>
           ))}
+        </div>
+
+        {/* Story list */}
+
+        <div className="mx-auto mt-14 max-w-4xl divide-y divide-slate-200 border-y border-slate-200 dark:divide-white/10 dark:border-white/10">
+          {filteredStories.map((story) => (
+            <article key={story.title} className="flex flex-col gap-3 py-8">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="inline-flex rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold text-violet-700 dark:bg-violet-500/10 dark:text-violet-300">
+                  {story.category}
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-500">
+                  <Calendar size={14} />
+                  {story.date}
+                </span>
+              </div>
+
+              <h3 className="text-xl font-semibold leading-snug">{story.title}</h3>
+
+              <p className="text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                {story.excerpt}
+              </p>
+
+              <button
+                type="button"
+                onClick={() => toast.success("Full story coming soon!")}
+                className="inline-flex w-fit cursor-pointer items-center gap-1.5 text-sm font-semibold text-violet-600 transition hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+              >
+                Read full story
+                <ArrowRight size={15} />
+              </button>
+            </article>
+          ))}
+
+          {filteredStories.length === 0 && (
+            <p className="py-10 text-center text-slate-500 dark:text-zinc-500">
+              No updates in this category yet.
+            </p>
+          )}
         </div>
       </div>
     </section>
