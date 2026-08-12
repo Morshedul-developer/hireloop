@@ -6,6 +6,7 @@ import {
   Sparkles,
   Calendar,
   ArrowRight,
+  Mail,
   Newspaper,
   Rocket,
   Building2,
@@ -177,6 +178,23 @@ export default function Newsroom() {
               No updates in this category yet.
             </p>
           )}
+        </div>
+
+        {/* Press contact CTA */}
+
+        <div className="mx-auto mt-16 flex max-w-3xl flex-col items-center gap-5 rounded-3xl border border-violet-400/20 bg-violet-400/10 px-8 py-10 text-center dark:border-violet-500/20 dark:bg-violet-500/10">
+          <h2 className="text-2xl font-semibold sm:text-3xl">For media inquiries</h2>
+          <p className="max-w-xl text-slate-600 dark:text-zinc-400">
+            Working on a story about HireLoop? Reach out to our press team for
+            interviews, data, or brand assets.
+          </p>
+          <a
+            href="mailto:press@hireloop.com"
+            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-7 py-3.5 font-semibold text-white transition hover:bg-violet-500"
+          >
+            <Mail size={18} />
+            press@hireloop.com
+          </a>
         </div>
       </div>
     </section>
