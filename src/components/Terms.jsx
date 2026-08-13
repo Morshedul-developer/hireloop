@@ -17,6 +17,22 @@ const sections = [
     title: "4. Job postings & employer responsibilities",
     body: "Employers are responsible for the accuracy of their job postings and company information. HireLoop reserves the right to remove listings that are misleading, discriminatory, or violate applicable law.",
   },
+  {
+    title: "5. Subscriptions & billing",
+    body: "Paid plans (Pro and Teams) are billed monthly or annually as selected at checkout. You can upgrade, downgrade, or cancel anytime from your billing settings — see our Pricing page for current plan details.",
+  },
+  {
+    title: "6. Acceptable use",
+    body: "You agree not to misuse HireLoop — including scraping data, submitting false information, impersonating another person or company, or attempting to disrupt the platform's operation.",
+  },
+  {
+    title: "7. Intellectual property",
+    body: "HireLoop's branding, design, and product are owned by HireLoop. Content you submit (CVs, job posts, messages) remains yours, but you grant us a license to display it as needed to operate the platform.",
+  },
+  {
+    title: "8. Termination",
+    body: "We may suspend or terminate accounts that violate these terms. You may close your account at any time from your account settings.",
+  },
 ];
 
 export default function Terms() {
