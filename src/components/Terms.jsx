@@ -1,6 +1,23 @@
 import { Scale } from "lucide-react";
 
-const sections = [];
+const sections = [
+  {
+    title: "1. Acceptance of terms",
+    body: "By creating an account or using HireLoop, you agree to these Terms & Conditions. If you don't agree, please don't use the platform.",
+  },
+  {
+    title: "2. Using HireLoop",
+    body: "HireLoop connects job seekers with employers across Bangladesh and remote-first teams. You may browse jobs, apply to roles, and use our AI tools to prepare applications, subject to fair use.",
+  },
+  {
+    title: "3. Accounts & eligibility",
+    body: "You must be at least 18 years old to create an account. You're responsible for keeping your login credentials secure and for all activity under your account.",
+  },
+  {
+    title: "4. Job postings & employer responsibilities",
+    body: "Employers are responsible for the accuracy of their job postings and company information. HireLoop reserves the right to remove listings that are misleading, discriminatory, or violate applicable law.",
+  },
+];
 
 export default function Terms() {
   return (
