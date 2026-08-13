@@ -33,6 +33,14 @@ const sections = [
     title: "8. Termination",
     body: "We may suspend or terminate accounts that violate these terms. You may close your account at any time from your account settings.",
   },
+  {
+    title: "9. Disclaimers & limitation of liability",
+    body: "HireLoop is provided \"as is.\" We don't guarantee job placement or hiring outcomes, and we're not liable for interactions between job seekers and employers conducted off-platform.",
+  },
+  {
+    title: "10. Changes to these terms",
+    body: "We may update these terms from time to time. We'll post the updated date below and, for material changes, notify you by email.",
+  },
 ];
 
 export default function Terms() {
