@@ -21,6 +21,26 @@ const sections = [
     title: "5. Data retention",
     body: "We retain your account data for as long as your account is active. If you delete your account, we remove your personal data within 30 days, except where retention is required by law.",
   },
+  {
+    title: "6. Your rights",
+    body: "You can access, update, or delete your personal data at any time from your account settings, or by contacting our support team directly.",
+  },
+  {
+    title: "7. Data security",
+    body: "We use industry-standard encryption and access controls to protect your data. No system is perfectly secure, but we work continuously to keep your information safe.",
+  },
+  {
+    title: "8. Third-party services",
+    body: "We use trusted third-party providers for things like payments and email delivery. These providers only receive the data needed to perform their function.",
+  },
+  {
+    title: "9. Children's privacy",
+    body: "HireLoop is not intended for anyone under 18. We don't knowingly collect data from minors.",
+  },
+  {
+    title: "10. Changes to this policy",
+    body: "We may update this policy from time to time. We'll post the updated date below and, for material changes, notify you by email.",
+  },
 ];
 
 export default function Privacy() {
