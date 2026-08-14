@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
 const sections = [
@@ -77,6 +78,21 @@ export default function Privacy() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Contact */}
+
+        <div className="mt-14 rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+          <h2 className="font-semibold">Questions about your data?</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+            Reach out to our team and we'll be happy to help.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-4 inline-block text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+          >
+            Contact us →
+          </Link>
         </div>
       </div>
     </section>
