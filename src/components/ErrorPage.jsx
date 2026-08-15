@@ -20,7 +20,7 @@ export default function ErrorPage({ error, reset, unstable_retry }) {
       </div>
 
       <Link href="/" className="relative mb-10 flex items-center">
-        <Image src="/logo.png" alt="HireLoop" width={135} height={35} priority />
+        <Image src="/logo.png" alt="HireLoop" width={135} height={35} className="h-auto w-auto" priority />
       </Link>
 
       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-rose-400/20 bg-rose-400/10 text-rose-600 dark:text-rose-300">

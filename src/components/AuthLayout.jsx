@@ -20,7 +20,7 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
         </div>
 
         <Link href="/" className="relative flex items-center">
-          <Image src="/logo.png" alt="HireLoop" width={135} height={35} priority />
+          <Image src="/logo.png" alt="HireLoop" width={135} height={35} className="h-auto w-auto" priority />
         </Link>
 
         <div className="relative">
@@ -82,7 +82,7 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
 
         <div className="relative w-full max-w-md">
           <Link href="/" className="mb-10 flex items-center lg:hidden">
-            <Image src="/logo.png" alt="HireLoop" width={120} height={32} priority />
+            <Image src="/logo.png" alt="HireLoop" width={120} height={32} className="h-auto w-auto" priority />
           </Link>
 
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
