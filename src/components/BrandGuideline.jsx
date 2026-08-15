@@ -102,10 +102,10 @@ export default function BrandGuideline() {
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             <div className="flex items-center justify-center rounded-3xl border border-slate-200 bg-slate-50 p-14 dark:border-white/10 dark:bg-white/[0.035]">
-              <Image src="/logo.png" alt="HireLoop logo on light" width={180} height={48} />
+              <Image src="/logo.png" alt="HireLoop logo on light" width={180} height={48} className="h-auto w-auto" />
             </div>
             <div className="flex items-center justify-center rounded-3xl border border-white/10 bg-[#0b0b0e] p-14">
-              <Image src="/logo.png" alt="HireLoop logo on dark" width={180} height={48} />
+              <Image src="/logo.png" alt="HireLoop logo on dark" width={180} height={48} className="h-auto w-auto" />
             </div>
           </div>
 
