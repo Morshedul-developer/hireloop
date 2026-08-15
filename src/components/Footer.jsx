@@ -21,6 +21,7 @@ export default function Footer() {
                 alt="HireLoop"
                 width={150}
                 height={50}
+                className="h-auto w-auto"
                 priority
               />
             </Link>

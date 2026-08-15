@@ -40,6 +40,7 @@ export default function Navbar() {
               alt="HireLoop"
               width={135}
               height={35}
+              className="h-auto w-auto"
               priority
             />
 
