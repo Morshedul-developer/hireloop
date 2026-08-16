@@ -1,5 +1,19 @@
 import Link from "next/link";
-import { ShieldCheck, Lock, Trash2, EyeOff } from "lucide-react";
+import {
+  ShieldCheck,
+  Lock,
+  Trash2,
+  EyeOff,
+  Database,
+  Settings2,
+  Users,
+  Cookie,
+  Clock,
+  UserCheck,
+  Share2,
+  Baby,
+  RefreshCw,
+} from "lucide-react";
 
 const highlights = [
   {
@@ -21,42 +35,52 @@ const highlights = [
 
 const sections = [
   {
+    icon: Database,
     title: "1. Information we collect",
     body: "We collect information you provide directly — your name, email, CV, and application details — along with usage data like pages visited and searches performed, to help match you with relevant roles.",
   },
   {
+    icon: Settings2,
     title: "2. How we use your information",
     body: "We use your data to operate HireLoop: matching you with jobs, powering the AI assistant, sending application updates, and improving the platform. We don't sell your personal data to third parties.",
   },
   {
+    icon: Users,
     title: "3. Sharing with employers",
     body: "When you apply to a job, your CV and application details are shared with that employer. Employers can't see your contact information until you choose to apply.",
   },
   {
+    icon: Cookie,
     title: "4. Cookies & tracking",
     body: "We use cookies to keep you signed in, remember your theme preference, and understand how HireLoop is used. You can control cookies through your browser settings.",
   },
   {
+    icon: Clock,
     title: "5. Data retention",
     body: "We retain your account data for as long as your account is active. If you delete your account, we remove your personal data within 30 days, except where retention is required by law.",
   },
   {
+    icon: UserCheck,
     title: "6. Your rights",
     body: "You can access, update, or delete your personal data at any time from your account settings, or by contacting our support team directly.",
   },
   {
+    icon: Lock,
     title: "7. Data security",
     body: "We use industry-standard encryption and access controls to protect your data. No system is perfectly secure, but we work continuously to keep your information safe.",
   },
   {
+    icon: Share2,
     title: "8. Third-party services",
     body: "We use trusted third-party providers for things like payments and email delivery. These providers only receive the data needed to perform their function.",
   },
   {
+    icon: Baby,
     title: "9. Children's privacy",
     body: "HireLoop is not intended for anyone under 18. We don't knowingly collect data from minors.",
   },
   {
+    icon: RefreshCw,
     title: "10. Changes to this policy",
     body: "We may update this policy from time to time. We'll post the updated date below and, for material changes, notify you by email.",
   },
@@ -116,13 +140,21 @@ export default function Privacy() {
 
         {/* Sections */}
 
-        <div className="mt-14 space-y-10 border-t border-slate-200 pt-14 dark:border-white/10">
-          {sections.map((section) => (
-            <div key={section.title}>
-              <h2 className="text-xl font-semibold">{section.title}</h2>
-              <p className="mt-3 leading-7 text-slate-600 dark:text-zinc-400">
-                {section.body}
-              </p>
+        <div className="mt-16 space-y-5">
+          {sections.map(({ icon: Icon, title, body }) => (
+            <div
+              key={title}
+              className="flex gap-5 rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-violet-400/30 hover:bg-slate-50 dark:border-white/10 dark:bg-white/2 dark:hover:border-violet-500/20 dark:hover:bg-white/4.5"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                <Icon size={18} />
+              </div>
+              <div>
+                <h2 className="font-semibold">{title}</h2>
+                <p className="mt-2 leading-7 text-slate-600 dark:text-zinc-400">
+                  {body}
+                </p>
+              </div>
             </div>
           ))}
         </div>
