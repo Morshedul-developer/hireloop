@@ -1,5 +1,23 @@
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Lock, Trash2, EyeOff } from "lucide-react";
+
+const highlights = [
+  {
+    icon: EyeOff,
+    title: "We never sell your data",
+    body: "Your personal information is never sold to third parties, period.",
+  },
+  {
+    icon: Trash2,
+    title: "Delete anytime",
+    body: "Remove your account and personal data whenever you choose.",
+  },
+  {
+    icon: Lock,
+    title: "Encrypted & secure",
+    body: "Industry-standard encryption protects your data at every step.",
+  },
+];
 
 const sections = [
   {
@@ -75,6 +93,25 @@ export default function Privacy() {
             Your privacy matters to us. This policy explains what data
             HireLoop collects, how we use it, and the choices you have.
           </p>
+        </div>
+
+        {/* Highlights */}
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-3">
+          {highlights.map(({ icon: Icon, title, body }) => (
+            <div
+              key={title}
+              className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/[0.035]"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
+                <Icon size={18} />
+              </div>
+              <h3 className="mt-4 font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                {body}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Sections */}
