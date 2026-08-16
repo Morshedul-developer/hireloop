@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ShieldCheck,
+  Sparkles,
   Lock,
   Trash2,
   EyeOff,
@@ -13,6 +14,7 @@ import {
   Share2,
   Baby,
   RefreshCw,
+  MessagesSquare,
 } from "lucide-react";
 
 const highlights = [
@@ -161,15 +163,19 @@ export default function Privacy() {
 
         {/* Contact */}
 
-        <div className="mt-14 rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
-          <h2 className="font-semibold">Questions about your data?</h2>
+        <div className="mt-14 rounded-3xl border border-violet-400/20 bg-violet-400/10 p-8 dark:border-violet-500/20 dark:bg-violet-500/10">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
+            <MessagesSquare size={18} />
+          </div>
+          <h2 className="mt-5 font-semibold">Questions about your data?</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-zinc-400">
-            Reach out to our team and we'll be happy to help.
+            Reach out to our team and we&apos;ll be happy to help.
           </p>
           <Link
             href="/contact"
-            className="mt-4 inline-block text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+            className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
           >
+            <Sparkles size={14} />
             Contact us →
           </Link>
         </div>
