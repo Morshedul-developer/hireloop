@@ -1,24 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, SearchX } from "lucide-react";
+import { ArrowRight, SearchX, Briefcase, Building2, LifeBuoy, Tag } from "lucide-react";
 
 const popularPages = [
   {
+    icon: Briefcase,
     title: "Browse Jobs",
     description: "Explore open roles across top companies.",
     href: "/jobs",
   },
   {
+    icon: Building2,
     title: "Companies",
     description: "Discover employers hiring right now.",
     href: "/companies",
   },
   {
+    icon: Tag,
     title: "Pricing",
     description: "Compare plans for job seekers and teams.",
     href: "/pricing",
   },
   {
+    icon: LifeBuoy,
     title: "Help Center",
     description: "Find answers to common questions.",
     href: "/help-center",
@@ -79,16 +83,21 @@ export default function NotFound() {
         </p>
 
         <div className="mt-6 grid gap-4 text-left sm:grid-cols-2">
-          {popularPages.map(({ title, description, href }) => (
+          {popularPages.map(({ icon: Icon, title, description, href }) => (
             <Link
               key={title}
               href={href}
-              className="block rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-violet-400/30 hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-500/20 dark:hover:bg-white/6"
+              className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-violet-400/30 hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-500/20 dark:hover:bg-white/6"
             >
-              <h2 className="font-semibold">{title}</h2>
-              <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
-                {description}
-              </p>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                <Icon size={18} />
+              </div>
+              <div>
+                <h2 className="font-semibold">{title}</h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                  {description}
+                </p>
+              </div>
             </Link>
           ))}
         </div>
