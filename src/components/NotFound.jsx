@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, SearchX, Briefcase, Building2, LifeBuoy, Tag } from "lucide-react";
+import {
+  ArrowRight,
+  SearchX,
+  ChevronRight,
+  Briefcase,
+  Building2,
+  LifeBuoy,
+  Tag,
+} from "lucide-react";
 
 const popularPages = [
   {
@@ -40,6 +48,14 @@ export default function NotFound() {
       <Link href="/" className="relative mb-8 flex items-center">
         <Image src="/logo.png" alt="HireLoop" width={135} height={35} className="h-auto w-auto" priority />
       </Link>
+
+      <div className="relative flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-zinc-600">
+        <Link href="/" className="transition hover:text-violet-600 dark:hover:text-violet-300">
+          Home
+        </Link>
+        <ChevronRight size={12} />
+        <span className="text-slate-500 dark:text-zinc-500">404</span>
+      </div>
 
       <div className="relative mt-8 w-full max-w-lg rounded-3xl border border-slate-200 bg-slate-50 p-10 dark:border-white/10 dark:bg-white/[0.035]">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10 text-violet-600 dark:text-violet-300">
