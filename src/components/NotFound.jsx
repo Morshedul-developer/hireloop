@@ -37,47 +37,49 @@ export default function NotFound() {
         <div className="absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-blue-600/15 blur-[120px]" />
       </div>
 
-      <Link href="/" className="relative mb-10 flex items-center">
+      <Link href="/" className="relative mb-8 flex items-center">
         <Image src="/logo.png" alt="HireLoop" width={135} height={35} className="h-auto w-auto" priority />
       </Link>
 
-      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10 text-violet-600 dark:text-violet-300">
-        <SearchX size={28} />
-      </div>
+      <div className="relative mt-8 w-full max-w-lg rounded-3xl border border-slate-200 bg-slate-50 p-10 dark:border-white/10 dark:bg-white/[0.035]">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10 text-violet-600 dark:text-violet-300">
+          <SearchX size={24} />
+        </div>
 
-      <p className="relative mt-8 bg-linear-to-r from-violet-600 to-blue-600 bg-clip-text text-7xl font-extrabold tracking-tight text-transparent sm:text-8xl">
-        404
-      </p>
+        <p className="mt-6 bg-linear-to-r from-violet-600 to-blue-600 bg-clip-text text-6xl font-extrabold tracking-tight text-transparent sm:text-7xl">
+          404
+        </p>
 
-      <h1 className="relative mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-        Page not found
-      </h1>
+        <h1 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+          Page not found
+        </h1>
 
-      <p className="relative mx-auto mt-4 max-w-md text-lg leading-8 text-slate-600 dark:text-zinc-400">
-        The page you&apos;re looking for doesn&apos;t exist or may have been
-        moved.
-      </p>
+        <p className="mx-auto mt-3 max-w-sm text-base leading-7 text-slate-600 dark:text-zinc-400">
+          The page you&apos;re looking for doesn&apos;t exist or may have
+          been moved.
+        </p>
 
-      <div className="relative mt-10 flex flex-wrap items-center justify-center gap-4">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-7 py-3.5 font-semibold text-white transition hover:bg-violet-500"
-        >
-          Back to Home
-          <ArrowRight size={18} />
-        </Link>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white transition hover:bg-violet-500"
+          >
+            Back to Home
+            <ArrowRight size={18} />
+          </Link>
 
-        <Link
-          href="/jobs"
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-7 py-3.5 font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
-        >
-          Browse Jobs
-        </Link>
+          <Link
+            href="/jobs"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+          >
+            Browse Jobs
+          </Link>
+        </div>
       </div>
 
       {/* Popular pages */}
 
-      <div className="relative mt-16 w-full max-w-3xl border-t border-slate-200 pt-12 dark:border-white/10">
+      <div className="relative mt-14 w-full max-w-3xl">
         <p className="text-sm font-semibold text-slate-500 dark:text-zinc-500">
           Or try one of these
         </p>
