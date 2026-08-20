@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AlertTriangle, RefreshCw } from "lucide-react";
+import { AlertTriangle, RefreshCw, ChevronRight } from "lucide-react";
 
 export default function ErrorPage({ error, reset, unstable_retry }) {
   const retry = unstable_retry ?? reset;
@@ -22,6 +22,14 @@ export default function ErrorPage({ error, reset, unstable_retry }) {
       <Link href="/" className="relative mb-8 flex items-center">
         <Image src="/logo.png" alt="HireLoop" width={135} height={35} className="h-auto w-auto" priority />
       </Link>
+
+      <div className="relative flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-zinc-600">
+        <Link href="/" className="transition hover:text-rose-600 dark:hover:text-rose-300">
+          Home
+        </Link>
+        <ChevronRight size={12} />
+        <span className="text-slate-500 dark:text-zinc-500">Error</span>
+      </div>
 
       <div className="relative mt-8 w-full max-w-lg rounded-3xl border border-slate-200 bg-slate-50 p-10 dark:border-white/10 dark:bg-white/[0.035]">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-rose-400/20 bg-rose-400/10 text-rose-600 dark:text-rose-300">
