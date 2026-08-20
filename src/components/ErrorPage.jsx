@@ -3,7 +3,28 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AlertTriangle, RefreshCw, ChevronRight } from "lucide-react";
+import {
+  AlertTriangle,
+  RefreshCw,
+  ChevronRight,
+  LifeBuoy,
+  MessagesSquare,
+} from "lucide-react";
+
+const helpLinks = [
+  {
+    icon: LifeBuoy,
+    title: "Help Center",
+    description: "Browse answers to common questions.",
+    href: "/help-center",
+  },
+  {
+    icon: MessagesSquare,
+    title: "Contact Support",
+    description: "Tell us what happened and we'll help.",
+    href: "/contact",
+  },
+];
 
 export default function ErrorPage({ error, reset, unstable_retry }) {
   const retry = unstable_retry ?? reset;
@@ -68,6 +89,34 @@ export default function ErrorPage({ error, reset, unstable_retry }) {
           >
             Back to Home
           </Link>
+        </div>
+      </div>
+
+      {/* Help links */}
+
+      <div className="relative mt-14 w-full max-w-xl">
+        <p className="text-sm font-semibold text-slate-500 dark:text-zinc-500">
+          Still stuck?
+        </p>
+
+        <div className="mt-6 grid gap-4 text-left sm:grid-cols-2">
+          {helpLinks.map(({ icon: Icon, title, description, href }) => (
+            <Link
+              key={title}
+              href={href}
+              className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-rose-400/30 hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-rose-500/20 dark:hover:bg-white/6"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-500/10 dark:text-rose-300">
+                <Icon size={18} />
+              </div>
+              <div>
+                <h2 className="font-semibold">{title}</h2>
+                <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-zinc-400">
+                  {description}
+                </p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
