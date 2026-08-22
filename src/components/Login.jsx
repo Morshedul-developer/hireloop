@@ -118,15 +118,25 @@ export default function Login() {
           {errors.password && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.password}</p>}
         </div>
 
-        <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400">
-          <input
-            type="checkbox"
-            checked={form.remember}
-            onChange={(event) => updateField("remember", event.target.checked)}
-            className="h-4 w-4 rounded border-slate-300 bg-white accent-violet-500 dark:border-white/20 dark:bg-white/5"
-          />
-          Remember me
-        </label>
+        <div className="flex items-center justify-between">
+          <label className="flex items-center gap-2 text-sm text-slate-600 dark:text-zinc-400">
+            <input
+              type="checkbox"
+              checked={form.remember}
+              onChange={(event) => updateField("remember", event.target.checked)}
+              className="h-4 w-4 rounded border-slate-300 bg-white accent-violet-500 dark:border-white/20 dark:bg-white/5"
+            />
+            Remember me
+          </label>
+
+          <button
+            type="button"
+            onClick={() => toast("Password reset instructions will be emailed to you soon.")}
+            className="text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+          >
+            Forgot password?
+          </button>
+        </div>
 
         <button
           type="submit"
