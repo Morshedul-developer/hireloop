@@ -4,11 +4,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { User, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
+import { User, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, Check, X } from "lucide-react";
 import { FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import AuthLayout from "@/components/AuthLayout";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const passwordRequirements = [
+  { label: "At least 8 characters", test: (value) => value.length >= 8 },
+  { label: "One uppercase letter", test: (value) => /[A-Z]/.test(value) },
+  { label: "One number", test: (value) => /[0-9]/.test(value) },
+];
 
 function getPasswordStrength(password) {
   let score = 0;
@@ -195,6 +201,23 @@ export default function Register() {
               </p>
             </div>
           )}
+
+          <ul className="mt-3 space-y-1.5">
+            {passwordRequirements.map((requirement) => {
+              const met = requirement.test(form.password);
+              return (
+                <li
+                  key={requirement.label}
+                  className={`flex items-center gap-2 text-xs ${
+                    met ? "text-emerald-600 dark:text-emerald-400" : "text-slate-400 dark:text-zinc-500"
+                  }`}
+                >
+                  {met ? <Check size={13} /> : <X size={13} />}
+                  {requirement.label}
+                </li>
+              );
+            })}
+          </ul>
 
           {errors.password && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.password}</p>}
         </div>
