@@ -113,6 +113,7 @@ export default function Register() {
             <input
               id="name"
               type="text"
+              autoComplete="name"
               value={form.name}
               onChange={(event) => updateField("name", event.target.value)}
               placeholder="Jane Rahman"
@@ -137,6 +138,7 @@ export default function Register() {
             <input
               id="email"
               type="email"
+              autoComplete="email"
               value={form.email}
               onChange={(event) => updateField("email", event.target.value)}
               placeholder="you@example.com"
@@ -161,6 +163,7 @@ export default function Register() {
             <input
               id="password"
               type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
               value={form.password}
               onChange={(event) => updateField("password", event.target.value)}
               placeholder="At least 8 characters"
@@ -211,6 +214,7 @@ export default function Register() {
             <input
               id="confirmPassword"
               type={showPassword ? "text" : "password"}
+              autoComplete="new-password"
               value={form.confirmPassword}
               onChange={(event) => updateField("confirmPassword", event.target.value)}
               placeholder="Re-enter your password"
