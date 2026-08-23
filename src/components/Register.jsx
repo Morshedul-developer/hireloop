@@ -10,6 +10,20 @@ import AuthLayout from "@/components/AuthLayout";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function getPasswordStrength(password) {
+  let score = 0;
+  if (password.length >= 8) score++;
+  if (password.length >= 12) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+
+  if (score <= 1) return { level: 1, label: "Weak", color: "bg-red-500", text: "text-red-500 dark:text-red-400" };
+  if (score <= 2) return { level: 2, label: "Fair", color: "bg-amber-500", text: "text-amber-600 dark:text-amber-400" };
+  if (score <= 3) return { level: 3, label: "Good", color: "bg-blue-500", text: "text-blue-600 dark:text-blue-400" };
+  return { level: 4, label: "Strong", color: "bg-emerald-500", text: "text-emerald-600 dark:text-emerald-400" };
+}
+
 export default function Register() {
   const router = useRouter();
 
@@ -23,6 +37,8 @@ export default function Register() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const passwordStrength = getPasswordStrength(form.password);
 
   const updateField = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -159,6 +175,24 @@ export default function Register() {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
+          {form.password && (
+            <div className="mt-3">
+              <div className="flex gap-1.5">
+                {[0, 1, 2, 3].map((index) => (
+                  <div
+                    key={index}
+                    className={`h-1.5 flex-1 rounded-full transition-colors ${
+                      index < passwordStrength.level ? passwordStrength.color : "bg-slate-200 dark:bg-white/10"
+                    }`}
+                  />
+                ))}
+              </div>
+              <p className={`mt-1.5 text-xs font-medium ${passwordStrength.text}`}>
+                {passwordStrength.label} password
+              </p>
+            </div>
+          )}
+
           {errors.password && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.password}</p>}
         </div>
 
