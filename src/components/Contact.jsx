@@ -11,6 +11,7 @@ import {
   Phone,
   MapPin,
   MessagesSquare,
+  Clock,
 } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
@@ -40,6 +41,11 @@ const contactDetails = [
     value: "Gulshan Avenue, Dhaka 1212, Bangladesh",
     href: "https://maps.google.com/?q=Gulshan+Avenue+Dhaka",
   },
+];
+
+const businessHours = [
+  { day: "Sunday – Thursday", hours: "9:00 AM – 6:00 PM (GMT+6)" },
+  { day: "Friday – Saturday", hours: "Closed" },
 ];
 
 const socials = [
@@ -248,6 +254,28 @@ export default function Contact() {
                   >
                     <Icon size={18} />
                   </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                <Clock size={18} />
+              </div>
+              <h2 className="mt-5 font-semibold">Business hours</h2>
+              <div className="mt-4 space-y-2">
+                {businessHours.map(({ day, hours }) => (
+                  <div
+                    key={day}
+                    className="flex items-center justify-between text-sm"
+                  >
+                    <span className="text-slate-500 dark:text-zinc-500">
+                      {day}
+                    </span>
+                    <span className="font-medium text-slate-900 dark:text-white">
+                      {hours}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>
