@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
+const MESSAGE_MAX_LENGTH = 500;
+
 const reasons = [
   "General inquiry",
   "Sales / Teams plan",
@@ -176,17 +178,23 @@ export default function Contact() {
             </div>
 
             <div className="mt-6">
-              <label
-                htmlFor="contact-message"
-                className="text-sm font-medium text-slate-700 dark:text-zinc-300"
-              >
-                Message
-              </label>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="contact-message"
+                  className="text-sm font-medium text-slate-700 dark:text-zinc-300"
+                >
+                  Message
+                </label>
+                <span className="text-xs text-slate-400 dark:text-zinc-500">
+                  {form.message.length}/{MESSAGE_MAX_LENGTH}
+                </span>
+              </div>
               <textarea
                 id="contact-message"
                 name="message"
                 required
                 minLength={10}
+                maxLength={MESSAGE_MAX_LENGTH}
                 rows={5}
                 value={form.message}
                 onChange={(event) => updateField("message", event.target.value)}
