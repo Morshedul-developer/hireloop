@@ -102,11 +102,17 @@ export default function Contact() {
           >
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">
+                <label
+                  htmlFor="contact-name"
+                  className="text-sm font-medium text-slate-700 dark:text-zinc-300"
+                >
                   Full name
                 </label>
                 <input
+                  id="contact-name"
+                  name="name"
                   type="text"
+                  autoComplete="name"
                   required
                   value={form.name}
                   onChange={(event) => updateField("name", event.target.value)}
@@ -116,11 +122,17 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">
+                <label
+                  htmlFor="contact-email"
+                  className="text-sm font-medium text-slate-700 dark:text-zinc-300"
+                >
                   Email address
                 </label>
                 <input
+                  id="contact-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
                   required
                   value={form.email}
                   onChange={(event) => updateField("email", event.target.value)}
@@ -131,10 +143,15 @@ export default function Contact() {
             </div>
 
             <div className="mt-6">
-              <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">
+              <label
+                htmlFor="contact-reason"
+                className="text-sm font-medium text-slate-700 dark:text-zinc-300"
+              >
                 Reason for contact
               </label>
               <select
+                id="contact-reason"
+                name="reason"
                 value={form.reason}
                 onChange={(event) => updateField("reason", event.target.value)}
                 className="mt-2 w-full cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white"
@@ -148,17 +165,29 @@ export default function Contact() {
             </div>
 
             <div className="mt-6">
-              <label className="text-sm font-medium text-slate-700 dark:text-zinc-300">
+              <label
+                htmlFor="contact-message"
+                className="text-sm font-medium text-slate-700 dark:text-zinc-300"
+              >
                 Message
               </label>
               <textarea
+                id="contact-message"
+                name="message"
                 required
+                minLength={10}
                 rows={5}
                 value={form.message}
                 onChange={(event) => updateField("message", event.target.value)}
                 placeholder="Tell us how we can help..."
                 className="mt-2 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
               />
+              {form.message.length > 0 && form.message.length < 10 && (
+                <p className="mt-2 text-xs text-red-500">
+                  Please add a few more details ({10 - form.message.length}{" "}
+                  characters to go).
+                </p>
+              )}
             </div>
 
             <button
