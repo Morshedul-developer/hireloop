@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import {
   Sparkles,
   Send,
+  Loader2,
   Mail,
   Phone,
   MapPin,
@@ -54,15 +55,19 @@ export default function Contact() {
     reason: reasons[0],
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function updateField(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 800));
     toast.success("Message sent — our team will reply within 24 hours!");
     setForm({ name: "", email: "", reason: reasons[0], message: "" });
+    setIsSubmitting(false);
   }
 
   return (
@@ -192,10 +197,20 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="mt-8 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 py-3.5 font-semibold text-white transition hover:bg-violet-500 sm:w-auto sm:px-8"
+              disabled={isSubmitting}
+              className="mt-8 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 py-3.5 font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-8"
             >
-              <Send size={18} />
-              Send message
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send size={18} />
+                  Send message
+                </>
+              )}
             </button>
           </form>
 
