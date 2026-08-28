@@ -201,27 +201,39 @@ export default function HelpCenter() {
           </h2>
 
           <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200 dark:divide-white/10 dark:border-white/10">
-            {filteredFaqs.map((faq, index) => (
-              <div key={faq.question}>
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
-                  className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left font-medium"
-                  aria-expanded={openFaq === index}
-                >
-                  {faq.question}
-                  <ChevronDown
-                    className={`shrink-0 text-violet-600 transition dark:text-violet-300 ${openFaq === index ? "rotate-180" : ""}`}
-                    size={20}
-                  />
-                </button>
-                {openFaq === index && (
-                  <p className="-mt-2 pb-6 pr-10 text-sm leading-7 text-slate-600 dark:text-zinc-400">
-                    {faq.answer}
-                  </p>
-                )}
-              </div>
-            ))}
+            {filteredFaqs.map((faq, index) => {
+              const panelId = `faq-panel-${index}`;
+              const buttonId = `faq-button-${index}`;
+              const isOpen = openFaq === index;
+              return (
+                <div key={faq.question}>
+                  <button
+                    type="button"
+                    id={buttonId}
+                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                    className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left font-medium"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                  >
+                    {faq.question}
+                    <ChevronDown
+                      className={`shrink-0 text-violet-600 transition dark:text-violet-300 ${isOpen ? "rotate-180" : ""}`}
+                      size={20}
+                    />
+                  </button>
+                  {isOpen && (
+                    <p
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className="-mt-2 pb-6 pr-10 text-sm leading-7 text-slate-600 dark:text-zinc-400"
+                    >
+                      {faq.answer}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
             {filteredFaqs.length === 0 && (
               <p className="py-10 text-center text-slate-500 dark:text-zinc-500">
                 No questions match your search.
