@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   Search,
+  X,
   Sparkles,
   Rocket,
   BriefcaseBusiness,
@@ -146,11 +147,22 @@ export default function HelpCenter() {
             />
             <input
               type="text"
+              aria-label="Search the Help Center"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search for articles, topics, or questions..."
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-13 pr-5 text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
+              className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-4 pl-13 pr-12 text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
             />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+                className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer rounded-full p-1 text-slate-400 transition hover:bg-slate-200 hover:text-slate-600 dark:text-zinc-500 dark:hover:bg-white/10 dark:hover:text-zinc-300"
+              >
+                <X size={16} />
+              </button>
+            )}
           </div>
         </div>
 
