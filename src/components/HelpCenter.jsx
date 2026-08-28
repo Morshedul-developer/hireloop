@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import {
   Search,
   X,
@@ -301,6 +302,9 @@ export default function HelpCenter() {
             </a>
             <button
               type="button"
+              onClick={() =>
+                toast.success("Connecting you to a support specialist...")
+              }
               className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-white px-7 py-3.5 font-semibold text-slate-900 transition hover:bg-slate-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
             >
               <MessageCircle size={18} />
