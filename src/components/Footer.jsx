@@ -35,6 +35,7 @@ export default function Footer() {
             <div className="mt-14 flex items-center gap-4">
               <Link
                 href="#"
+                aria-label="Facebook"
                 className="rounded-xl bg-slate-100 p-3 transition hover:bg-violet-600 hover:text-white dark:bg-[#111111]"
               >
                 <FaFacebookF size={20} />
@@ -42,6 +43,7 @@ export default function Footer() {
 
               <Link
                 href="#"
+                aria-label="Instagram"
                 className="rounded-xl bg-violet-600 p-3 text-white transition hover:bg-violet-500"
               >
                 <FaInstagram size={20} />
@@ -49,6 +51,7 @@ export default function Footer() {
 
               <Link
                 href="#"
+                aria-label="LinkedIn"
                 className="rounded-xl bg-slate-100 p-3 transition hover:bg-violet-600 hover:text-white dark:bg-[#111111]"
               >
                 <FaLinkedinIn size={20} />
