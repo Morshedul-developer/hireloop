@@ -62,7 +62,10 @@ export default function NotFound() {
           <SearchX size={24} />
         </div>
 
-        <p className="mt-6 bg-linear-to-r from-violet-600 to-blue-600 bg-clip-text text-6xl font-extrabold tracking-tight text-transparent sm:text-7xl">
+        <p
+          aria-hidden="true"
+          className="mt-6 bg-linear-to-r from-violet-600 to-blue-600 bg-clip-text text-6xl font-extrabold tracking-tight text-transparent sm:text-7xl"
+        >
           404
         </p>
 
