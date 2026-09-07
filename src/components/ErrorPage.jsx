@@ -53,7 +53,7 @@ export default function ErrorPage({ error, reset, unstable_retry }) {
       </nav>
 
       <div className="relative mt-8 w-full max-w-lg rounded-3xl border border-slate-200 bg-slate-50 p-10 dark:border-white/10 dark:bg-white/[0.035]">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-rose-400/20 bg-rose-400/10 text-rose-600 dark:text-rose-300">
+        <div aria-hidden="true" className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-rose-400/20 bg-rose-400/10 text-rose-600 dark:text-rose-300">
           <AlertTriangle size={24} />
         </div>
 
