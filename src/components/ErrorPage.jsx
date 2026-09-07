@@ -49,7 +49,7 @@ export default function ErrorPage({ error, reset, unstable_retry }) {
           Home
         </Link>
         <ChevronRight size={12} />
-        <span className="text-slate-500 dark:text-zinc-500">Error</span>
+        <span aria-current="page" className="text-slate-500 dark:text-zinc-500">Error</span>
       </nav>
 
       <div className="relative mt-8 w-full max-w-lg rounded-3xl border border-slate-200 bg-slate-50 p-10 dark:border-white/10 dark:bg-white/[0.035]">
