@@ -184,7 +184,7 @@ export default function HelpCenter() {
                   key={title}
                   className="rounded-2xl border border-slate-200 bg-slate-50 p-6 transition hover:-translate-y-1 hover:border-violet-300 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-violet-400/40"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                  <div aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
                     <Icon size={20} />
                   </div>
                   <h3 className="mt-5 font-semibold">{title}</h3>
