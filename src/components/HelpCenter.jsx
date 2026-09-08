@@ -165,6 +165,13 @@ export default function HelpCenter() {
               </button>
             )}
           </div>
+
+          {normalizedQuery && (
+            <p aria-live="polite" className="sr-only">
+              {filteredCategories.length} topics and {filteredFaqs.length}{" "}
+              questions match your search.
+            </p>
+          )}
         </div>
 
         {/* Category grid */}
