@@ -185,7 +185,7 @@ export default function Contact() {
                 >
                   Message
                 </label>
-                <span className="text-xs text-slate-400 dark:text-zinc-500">
+                <span id="contact-message-count" className="text-xs text-slate-400 dark:text-zinc-500">
                   {form.message.length}/{MESSAGE_MAX_LENGTH}
                 </span>
               </div>
@@ -199,6 +199,7 @@ export default function Contact() {
                 value={form.message}
                 onChange={(event) => updateField("message", event.target.value)}
                 placeholder="Tell us how we can help..."
+                aria-describedby="contact-message-count"
                 className="mt-2 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
               />
               {form.message.length > 0 && form.message.length < 10 && (
