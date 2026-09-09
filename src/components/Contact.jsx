@@ -203,7 +203,7 @@ export default function Contact() {
                 className="mt-2 w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-violet-500 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-zinc-500"
               />
               {form.message.length > 0 && form.message.length < 10 && (
-                <p className="mt-2 text-xs text-red-500">
+                <p role="alert" className="mt-2 text-xs text-red-500">
                   Please add a few more details ({10 - form.message.length}{" "}
                   characters to go).
                 </p>
