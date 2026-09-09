@@ -242,7 +242,7 @@ export default function Contact() {
                     href={href}
                     className="flex items-start gap-4 transition hover:opacity-80"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+                    <div aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
                       <Icon size={18} />
                     </div>
                     <div>
@@ -268,7 +268,7 @@ export default function Contact() {
             </div>
 
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 dark:border-white/10 dark:bg-white/[0.035]">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+              <div aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
                 <Clock size={18} />
               </div>
               <h2 className="mt-5 font-semibold">Business hours</h2>
@@ -290,7 +290,7 @@ export default function Contact() {
             </div>
 
             <div className="rounded-3xl border border-violet-400/20 bg-violet-400/10 p-8 dark:border-violet-500/20 dark:bg-violet-500/10">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
+              <div aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
                 <MessagesSquare size={18} />
               </div>
               <h2 className="mt-5 font-semibold">Prefer self-serve?</h2>
