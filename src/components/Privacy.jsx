@@ -129,7 +129,7 @@ export default function Privacy() {
               key={title}
               className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/[0.035]"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
+              <div aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
                 <Icon size={18} />
               </div>
               <h3 className="mt-4 font-semibold">{title}</h3>
