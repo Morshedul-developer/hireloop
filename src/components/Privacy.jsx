@@ -101,7 +101,7 @@ export default function Privacy() {
 
         <div className="text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
-            <ShieldCheck size={16} /> Your privacy, protected
+            <ShieldCheck aria-hidden="true" size={16} /> Your privacy, protected
           </span>
 
           <h1 className="mt-7 text-4xl font-semibold tracking-tight sm:text-6xl">
@@ -175,7 +175,7 @@ export default function Privacy() {
             href="/contact"
             className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
           >
-            <Sparkles size={14} />
+            <Sparkles aria-hidden="true" size={14} />
             Contact us →
           </Link>
         </div>
