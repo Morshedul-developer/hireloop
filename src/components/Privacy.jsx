@@ -148,7 +148,7 @@ export default function Privacy() {
               key={title}
               className="flex gap-5 rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-violet-400/30 hover:bg-slate-50 dark:border-white/10 dark:bg-white/2 dark:hover:border-violet-500/20 dark:hover:bg-white/4.5"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
+              <div aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-100 text-violet-600 dark:bg-violet-500/10 dark:text-violet-300">
                 <Icon size={18} />
               </div>
               <div>
