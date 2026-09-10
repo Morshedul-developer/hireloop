@@ -164,7 +164,7 @@ export default function Privacy() {
         {/* Contact */}
 
         <div className="mt-14 rounded-3xl border border-violet-400/20 bg-violet-400/10 p-8 dark:border-violet-500/20 dark:bg-violet-500/10">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
+          <div aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-white">
             <MessagesSquare size={18} />
           </div>
           <h2 className="mt-5 font-semibold">Questions about your data?</h2>
