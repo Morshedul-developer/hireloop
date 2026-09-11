@@ -91,7 +91,7 @@ export default function Terms() {
             href="/contact"
             className="mt-4 inline-block text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
           >
-            Contact us →
+            Contact us <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
