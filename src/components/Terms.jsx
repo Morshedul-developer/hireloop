@@ -50,7 +50,7 @@ export default function Terms() {
       <div className="mx-auto max-w-3xl px-6">
         {/* Heading */}
 
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10 text-violet-600 dark:text-violet-300">
+        <div aria-hidden="true" className="flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/10 text-violet-600 dark:text-violet-300">
           <Scale size={22} />
         </div>
 
