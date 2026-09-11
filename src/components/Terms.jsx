@@ -59,7 +59,7 @@ export default function Terms() {
         </h1>
 
         <p className="mt-4 text-sm text-slate-500 dark:text-zinc-500">
-          Last updated: August 2026
+          Last updated: <time dateTime="2026-08">August 2026</time>
         </p>
 
         <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-zinc-400">
