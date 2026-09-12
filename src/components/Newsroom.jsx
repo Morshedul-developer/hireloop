@@ -136,7 +136,7 @@ export default function Newsroom() {
                   : "border border-slate-200 bg-slate-50 text-slate-600 hover:border-violet-300 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:text-white"
               }`}
             >
-              <Icon size={16} />
+              <Icon aria-hidden="true" size={16} />
               {name}
             </button>
           ))}
