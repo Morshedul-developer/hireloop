@@ -169,7 +169,7 @@ export default function Newsroom() {
                 className="inline-flex w-fit cursor-pointer items-center gap-1.5 text-sm font-semibold text-violet-600 transition hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
               >
                 Read full story
-                <ArrowRight size={15} />
+                <ArrowRight aria-hidden="true" size={15} />
               </button>
             </article>
           ))}
