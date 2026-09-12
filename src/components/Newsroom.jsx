@@ -152,7 +152,7 @@ export default function Newsroom() {
                   {story.category}
                 </span>
                 <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-500">
-                  <Calendar size={14} />
+                  <Calendar aria-hidden="true" size={14} />
                   {story.date}
                 </span>
               </div>
