@@ -93,7 +93,7 @@ export default function Newsroom() {
 
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
-            <Sparkles size={16} /> Newsroom
+            <Sparkles aria-hidden="true" size={16} /> Newsroom
           </span>
 
           <h1 className="mt-7 text-4xl font-semibold tracking-tight sm:text-6xl">
@@ -193,7 +193,7 @@ export default function Newsroom() {
             href="mailto:press@hireloop.com"
             className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-7 py-3.5 font-semibold text-white transition hover:bg-violet-500"
           >
-            <Mail size={18} />
+            <Mail aria-hidden="true" size={18} />
             press@hireloop.com
           </a>
         </div>
