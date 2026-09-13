@@ -192,7 +192,7 @@ export default function CareerLibrary() {
 
                   <div className="mt-6 flex items-center justify-between">
                     <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-zinc-500">
-                      <Clock3 size={14} />
+                      <Clock3 aria-hidden="true" size={14} />
                       {article.readTime}
                     </span>
 
@@ -202,7 +202,7 @@ export default function CareerLibrary() {
                       className="inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-violet-600 transition hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
                     >
                       Read article
-                      <ArrowRight size={15} />
+                      <ArrowRight aria-hidden="true" size={15} />
                     </button>
                   </div>
                 </article>
