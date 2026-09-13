@@ -140,6 +140,7 @@ export default function CareerLibrary() {
             />
             <input
               type="text"
+              aria-label="Search the Career Library"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search articles and guides..."
