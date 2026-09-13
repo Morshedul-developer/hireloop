@@ -120,7 +120,7 @@ export default function CareerLibrary() {
 
         <div className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
-            <Sparkles size={16} /> Career Library
+            <Sparkles aria-hidden="true" size={16} /> Career Library
           </span>
 
           <h1 className="mt-7 text-4xl font-semibold tracking-tight sm:text-6xl">
@@ -233,6 +233,7 @@ export default function CareerLibrary() {
             <input
               type="email"
               required
+              aria-label="Email address"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               placeholder="you@email.com"
@@ -242,7 +243,7 @@ export default function CareerLibrary() {
               type="submit"
               className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl bg-violet-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-500"
             >
-              <Mail size={16} />
+              <Mail aria-hidden="true" size={16} />
               Subscribe
             </button>
           </form>
