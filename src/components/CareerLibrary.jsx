@@ -157,6 +157,7 @@ export default function CareerLibrary() {
               key={name}
               type="button"
               onClick={() => setActiveCategory(name)}
+              aria-pressed={activeCategory === name}
               className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${
                 activeCategory === name
                   ? "bg-violet-600 text-white"
