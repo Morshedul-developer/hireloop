@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { Search, MapPin, ArrowRight, BadgeCheck, Sparkles, Briefcase, Building2, Users } from "lucide-react";
 
 const searchTags = ["React", "Next.js", "Remote", "Frontend", "Backend", "UI/UX"];
@@ -30,6 +33,26 @@ const heroStats = [
   { icon: Users, value: "100K+", label: "Candidates" },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const heroStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+const tagStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.05, delayChildren: 0.5 } },
+};
+
+const tagItem = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+};
+
 function initials(name) {
   return name
     .split(" ")
@@ -50,29 +73,47 @@ export default function Banner() {
         <div className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-blue-600/10 blur-[150px]" />
       </div>
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
+      <motion.div
+        className="relative mx-auto max-w-4xl px-6 text-center"
+        initial="hidden"
+        animate="show"
+        variants={heroStagger}
+      >
+        <motion.span
+          variants={fadeUp}
+          className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200"
+        >
           <BadgeCheck size={16} />
           Bangladesh&apos;s #1 Career Platform
-        </span>
+        </motion.span>
 
-        <h1 className="mx-auto mt-8 max-w-3xl text-5xl font-semibold leading-[1.08] tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
+        <motion.h1
+          variants={fadeUp}
+          className="mx-auto mt-8 max-w-3xl text-5xl font-semibold leading-[1.08] tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl"
+        >
           Find your{" "}
           <span className="bg-linear-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent dark:from-violet-400 dark:to-blue-400">
             dream job
           </span>
           , faster than ever.
-        </h1>
+        </motion.h1>
 
-        <p className="mx-auto mt-7 max-w-xl text-lg leading-8 text-slate-600 dark:text-zinc-400">
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-7 max-w-xl text-lg leading-8 text-slate-600 dark:text-zinc-400"
+        >
           Discover thousands of verified openings from top companies. Apply
           instantly, track everything in one place, and get hired with
           confidence.
-        </p>
+        </motion.p>
 
         {/* Search */}
 
-        <div className="mx-auto mt-11 flex max-w-2xl flex-col gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 text-left shadow-2xl shadow-slate-200/60 backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:shadow-black/40 sm:flex-row sm:items-center sm:gap-0">
+        <motion.div
+          variants={fadeUp}
+          whileHover={{ scale: 1.01 }}
+          className="mx-auto mt-11 flex max-w-2xl flex-col gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 text-left shadow-2xl shadow-slate-200/60 backdrop-blur-xl transition-shadow dark:border-white/10 dark:bg-white/5 dark:shadow-black/40 sm:flex-row sm:items-center sm:gap-0"
+        >
           <div className="flex flex-1 items-center gap-3 px-3">
             <Search className="shrink-0 text-slate-400 dark:text-zinc-500" size={20} />
             <input
@@ -91,26 +132,33 @@ export default function Banner() {
             />
           </div>
 
-          <button className="flex h-14 shrink-0 items-center justify-center gap-2 rounded-xl bg-violet-500 px-8 font-semibold text-white transition hover:bg-violet-400">
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="flex h-14 shrink-0 items-center justify-center gap-2 rounded-xl bg-violet-500 px-8 font-semibold text-white transition-colors hover:bg-violet-400"
+          >
             Search Jobs
             <ArrowRight size={18} />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
+        <motion.div variants={tagStagger} initial="hidden" animate="show" className="mt-7 flex flex-wrap justify-center gap-3">
           {searchTags.map((tag) => (
-            <span
+            <motion.span
               key={tag}
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-600 transition hover:border-violet-400/30 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:text-white"
+              variants={tagItem}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-600 transition-colors hover:border-violet-400/30 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:text-white"
             >
               {tag}
-            </span>
+            </motion.span>
           ))}
-        </div>
+        </motion.div>
 
         {/* Trusted by */}
 
-        <div className="mt-16">
+        <motion.div variants={fadeUp} className="mt-16">
           <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-zinc-500">
             Trusted by teams at
           </p>
@@ -121,13 +169,23 @@ export default function Banner() {
               </span>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Product preview */}
 
-      <div className="relative mx-auto mt-20 max-w-5xl px-6">
-        <div className="absolute -left-4 -top-20 z-20 hidden animate-float items-center gap-2.5 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#151518]/95 lg:flex">
+      <motion.div
+        className="relative mx-auto mt-20 max-w-5xl px-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -left-4 -top-20 z-20 hidden items-center gap-2.5 rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-xl backdrop-blur-xl dark:border-white/10 dark:bg-[#151518]/95 lg:flex"
+        >
           <div className="rounded-lg bg-violet-500/15 p-2 text-violet-500 dark:text-violet-400">
             <Sparkles size={18} />
           </div>
@@ -135,9 +193,13 @@ export default function Banner() {
             <p className="text-sm font-semibold text-slate-900 dark:text-white">96% Match Accuracy</p>
             <p className="text-xs text-slate-500 dark:text-zinc-400">Powered by HireLoop AI</p>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-2xl shadow-violet-950/10 backdrop-blur dark:border-white/10 dark:bg-white/4 dark:shadow-violet-950/40">
+        <motion.div
+          whileHover={{ y: -6 }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-2xl shadow-violet-950/10 backdrop-blur dark:border-white/10 dark:bg-white/4 dark:shadow-violet-950/40"
+        >
           <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-100 px-5 py-4 dark:border-white/10 dark:bg-white/5">
             <span className="h-3 w-3 rounded-full bg-red-400/70" />
             <span className="h-3 w-3 rounded-full bg-amber-400/70" />
@@ -198,11 +260,17 @@ export default function Banner() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Overlapping stats bar */}
 
-        <div className="relative z-20 mx-auto -mt-8 flex w-11/12 max-w-3xl flex-col items-center gap-6 rounded-2xl border border-slate-200 bg-white/95 px-8 py-6 shadow-2xl shadow-slate-200/60 backdrop-blur-xl dark:border-white/10 dark:bg-[#151518]/95 dark:shadow-black/50 sm:flex-row sm:justify-around sm:gap-0 sm:divide-x sm:divide-slate-200 dark:sm:divide-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-20 mx-auto -mt-8 flex w-11/12 max-w-3xl flex-col items-center gap-6 rounded-2xl border border-slate-200 bg-white/95 px-8 py-6 shadow-2xl shadow-slate-200/60 backdrop-blur-xl dark:border-white/10 dark:bg-[#151518]/95 dark:shadow-black/50 sm:flex-row sm:justify-around sm:gap-0 sm:divide-x sm:divide-slate-200 dark:sm:divide-white/10"
+        >
           {heroStats.map(({ icon: Icon, value, label }) => (
             <div key={label} className="flex items-center gap-3 sm:px-6">
               <Icon className="shrink-0 text-violet-500 dark:text-violet-400" size={22} />
@@ -212,8 +280,8 @@ export default function Banner() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
