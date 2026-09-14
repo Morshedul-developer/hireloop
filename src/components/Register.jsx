@@ -4,10 +4,21 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { User, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, Check, X } from "lucide-react";
+import {
+  User,
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  Loader2,
+  ArrowRight,
+  Check,
+  X,
+} from "lucide-react";
 import { FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import AuthLayout from "@/components/AuthLayout";
 import { authClient } from "@/app/lib/auth-client";
+import { Label, Radio, RadioGroup } from "@heroui/react";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -25,10 +36,33 @@ function getPasswordStrength(password) {
   if (/[0-9]/.test(password)) score++;
   if (/[^A-Za-z0-9]/.test(password)) score++;
 
-  if (score <= 1) return { level: 1, label: "Weak", color: "bg-red-500", text: "text-red-500 dark:text-red-400" };
-  if (score <= 2) return { level: 2, label: "Fair", color: "bg-amber-500", text: "text-amber-600 dark:text-amber-400" };
-  if (score <= 3) return { level: 3, label: "Good", color: "bg-blue-500", text: "text-blue-600 dark:text-blue-400" };
-  return { level: 4, label: "Strong", color: "bg-emerald-500", text: "text-emerald-600 dark:text-emerald-400" };
+  if (score <= 1)
+    return {
+      level: 1,
+      label: "Weak",
+      color: "bg-red-500",
+      text: "text-red-500 dark:text-red-400",
+    };
+  if (score <= 2)
+    return {
+      level: 2,
+      label: "Fair",
+      color: "bg-amber-500",
+      text: "text-amber-600 dark:text-amber-400",
+    };
+  if (score <= 3)
+    return {
+      level: 3,
+      label: "Good",
+      color: "bg-blue-500",
+      text: "text-blue-600 dark:text-blue-400",
+    };
+  return {
+    level: 4,
+    label: "Strong",
+    color: "bg-emerald-500",
+    text: "text-emerald-600 dark:text-emerald-400",
+  };
 }
 
 export default function Register() {
@@ -39,6 +73,7 @@ export default function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "seeker",
     agreeToTerms: false,
   });
   const [errors, setErrors] = useState({});
@@ -95,6 +130,7 @@ export default function Register() {
       name: form.name.trim(),
       email: form.email.trim(),
       password: form.password,
+      role: form.role,
     });
 
     setIsSubmitting(false);
@@ -117,7 +153,10 @@ export default function Register() {
     >
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
         <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300">
+          <label
+            htmlFor="name"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300"
+          >
             Full name
           </label>
           <div
@@ -127,7 +166,10 @@ export default function Register() {
                 : "border-slate-200 focus-within:border-violet-400 dark:border-white/10 dark:focus-within:border-violet-400/60"
             }`}
           >
-            <User className="shrink-0 text-slate-400 dark:text-zinc-500" size={18} />
+            <User
+              className="shrink-0 text-slate-400 dark:text-zinc-500"
+              size={18}
+            />
             <input
               id="name"
               type="text"
@@ -138,11 +180,18 @@ export default function Register() {
               className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-white dark:placeholder:text-zinc-500"
             />
           </div>
-          {errors.name && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.name}</p>}
+          {errors.name && (
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.name}
+            </p>
+          )}
         </div>
 
         <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300">
+          <label
+            htmlFor="email"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300"
+          >
             Email address
           </label>
           <div
@@ -152,7 +201,10 @@ export default function Register() {
                 : "border-slate-200 focus-within:border-violet-400 dark:border-white/10 dark:focus-within:border-violet-400/60"
             }`}
           >
-            <Mail className="shrink-0 text-slate-400 dark:text-zinc-500" size={18} />
+            <Mail
+              className="shrink-0 text-slate-400 dark:text-zinc-500"
+              size={18}
+            />
             <input
               id="email"
               type="email"
@@ -163,11 +215,18 @@ export default function Register() {
               className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-white dark:placeholder:text-zinc-500"
             />
           </div>
-          {errors.email && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.email}</p>}
+          {errors.email && (
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div>
-          <label htmlFor="password" className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300">
+          <label
+            htmlFor="password"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300"
+          >
             Password
           </label>
           <div
@@ -177,7 +236,10 @@ export default function Register() {
                 : "border-slate-200 focus-within:border-violet-400 dark:border-white/10 dark:focus-within:border-violet-400/60"
             }`}
           >
-            <Lock className="shrink-0 text-slate-400 dark:text-zinc-500" size={18} />
+            <Lock
+              className="shrink-0 text-slate-400 dark:text-zinc-500"
+              size={18}
+            />
             <input
               id="password"
               type={showPassword ? "text" : "password"}
@@ -203,12 +265,16 @@ export default function Register() {
                   <div
                     key={index}
                     className={`h-1.5 flex-1 rounded-full transition-colors ${
-                      index < passwordStrength.level ? passwordStrength.color : "bg-slate-200 dark:bg-white/10"
+                      index < passwordStrength.level
+                        ? passwordStrength.color
+                        : "bg-slate-200 dark:bg-white/10"
                     }`}
                   />
                 ))}
               </div>
-              <p className={`mt-1.5 text-xs font-medium ${passwordStrength.text}`}>
+              <p
+                className={`mt-1.5 text-xs font-medium ${passwordStrength.text}`}
+              >
                 {passwordStrength.label} password
               </p>
             </div>
@@ -221,7 +287,9 @@ export default function Register() {
                 <li
                   key={requirement.label}
                   className={`flex items-center gap-2 text-xs ${
-                    met ? "text-emerald-600 dark:text-emerald-400" : "text-slate-400 dark:text-zinc-500"
+                    met
+                      ? "text-emerald-600 dark:text-emerald-400"
+                      : "text-slate-400 dark:text-zinc-500"
                   }`}
                 >
                   {met ? <Check size={13} /> : <X size={13} />}
@@ -231,11 +299,18 @@ export default function Register() {
             })}
           </ul>
 
-          {errors.password && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.password}</p>}
+          {errors.password && (
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.password}
+            </p>
+          )}
         </div>
 
         <div>
-          <label htmlFor="confirmPassword" className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300">
+          <label
+            htmlFor="confirmPassword"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300"
+          >
             Confirm password
           </label>
           <div
@@ -245,44 +320,88 @@ export default function Register() {
                 : "border-slate-200 focus-within:border-violet-400 dark:border-white/10 dark:focus-within:border-violet-400/60"
             }`}
           >
-            <Lock className="shrink-0 text-slate-400 dark:text-zinc-500" size={18} />
+            <Lock
+              className="shrink-0 text-slate-400 dark:text-zinc-500"
+              size={18}
+            />
             <input
               id="confirmPassword"
               type={showPassword ? "text" : "password"}
               autoComplete="new-password"
               value={form.confirmPassword}
-              onChange={(event) => updateField("confirmPassword", event.target.value)}
+              onChange={(event) =>
+                updateField("confirmPassword", event.target.value)
+              }
               placeholder="Re-enter your password"
               className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-white dark:placeholder:text-zinc-500"
             />
           </div>
           {errors.confirmPassword && (
-            <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.confirmPassword}</p>
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.confirmPassword}
+            </p>
           )}
         </div>
 
+        {/* Select Role */}
+        <div className="flex flex-col gap-4">
+          <Label className="text-slate-700 dark:text-zinc-300">Role</Label>
+          <RadioGroup
+            value={form.role}
+            name="role"
+            orientation="horizontal"
+            onChange={(event) => updateField("role", event)}
+          >
+            <Radio value="seeker">
+              <Radio.Content>
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                Job Seeker
+              </Radio.Content>
+            </Radio>
+            <Radio value="recruiter">
+              <Radio.Content>
+                <Radio.Control>
+                  <Radio.Indicator />
+                </Radio.Control>
+                Recruiter
+              </Radio.Content>
+            </Radio>
+          </RadioGroup>
+        </div>
         <div>
           <label className="flex items-start gap-2 text-sm text-slate-600 dark:text-zinc-400">
             <input
               type="checkbox"
               checked={form.agreeToTerms}
-              onChange={(event) => updateField("agreeToTerms", event.target.checked)}
+              onChange={(event) =>
+                updateField("agreeToTerms", event.target.checked)
+              }
               className="mt-0.5 h-4 w-4 rounded border-slate-300 bg-white accent-violet-500 dark:border-white/20 dark:bg-white/5"
             />
             <span>
               I agree to the{" "}
-              <Link href="/terms" className="text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200">
+              <Link
+                href="/terms"
+                className="text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+              >
                 Terms & Conditions
               </Link>{" "}
               and{" "}
-              <Link href="/privacy" className="text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200">
+              <Link
+                href="/privacy"
+                className="text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+              >
                 Privacy Policy
               </Link>
               .
             </span>
           </label>
           {errors.agreeToTerms && (
-            <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.agreeToTerms}</p>
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.agreeToTerms}
+            </p>
           )}
         </div>
 
@@ -330,7 +449,10 @@ export default function Register() {
 
       <p className="mt-8 text-center text-sm text-slate-600 dark:text-zinc-400">
         Already have an account?{" "}
-        <Link href="/auth/sign-in" className="font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200">
+        <Link
+          href="/auth/sign-in"
+          className="font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+        >
           Sign in
         </Link>
       </p>
