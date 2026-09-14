@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { User, Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, Check, X } from "lucide-react";
 import { FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import AuthLayout from "@/components/AuthLayout";
+import { authClient } from "@/app/lib/auth-client";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -81,7 +82,7 @@ export default function Register() {
     return nextErrors;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const nextErrors = validate();
@@ -89,11 +90,22 @@ export default function Register() {
     if (Object.keys(nextErrors).length > 0) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("Account created! Welcome to HireLoop.");
-      router.push("/");
-    }, 900);
+
+    const { error } = await authClient.signUp.email({
+      name: form.name.trim(),
+      email: form.email.trim(),
+      password: form.password,
+    });
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast.error(error.message || "Could not create your account.");
+      return;
+    }
+
+    toast.success("Account created! Welcome to HireLoop.");
+    router.push("/");
   };
 
   return (

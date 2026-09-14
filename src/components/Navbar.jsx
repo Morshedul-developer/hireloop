@@ -5,6 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { authClient } from "@/app/lib/auth-client";
+import { Button } from "@heroui/react";
+import { PiSignOutBold } from "react-icons/pi";
+import { useRouter } from "next/navigation";
 
 const navLinks = [
   {
@@ -26,13 +30,26 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/");
+        },
+      },
+    });
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md dark:bg-[#151518]/80">
       <div className="mx-auto max-w-7xl px-4 py-5">
         <div className="flex h-16 items-center justify-between rounded-2xl bg-slate-100 px-6 dark:bg-[#1F1F22]">
-
           {/* ================= Logo ================= */}
           <Link href="/" className="flex items-center">
             <Image
@@ -52,7 +69,6 @@ export default function Navbar() {
 
           {/* ================= Desktop Navigation ================= */}
           <div className="hidden items-center lg:flex">
-
             <ul className="flex items-center">
               {navLinks.map((item) => (
                 <li key={item.name}>
@@ -76,21 +92,36 @@ export default function Navbar() {
 
             {/* Authentication Part */}
 
-            <Link
-              href="/auth/sign-in"
-              className="mr-8 text-[16px] font-medium text-violet-600 transition hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400"
-            >
-              Sign In
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <p>Hi, {user.name}</p>
+                <Button
+                  onClick={handleSignOut}
+                  variant="danger-soft"
+                  className="items-center"
+                >
+                  <PiSignOutBold />
+                </Button>
+              </div>
+            ) : (
+              <Link
+                href="/auth/sign-in"
+                className="mr-8 text-[16px] font-medium text-violet-600 transition hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400"
+              >
+                Sign In
+              </Link>
+            )}
 
             {/* Button */}
 
-            <Link
-              href="/register"
-              className="rounded-xl bg-violet-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:bg-violet-500"
-            >
-              Get Started
-            </Link>
+            {!user && (
+              <Link
+                href="/auth/sign-up"
+                className="rounded-xl bg-violet-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:bg-violet-500"
+              >
+                Get Started
+              </Link>
+            )}
           </div>
 
           {/* ============ Mobile Button Part ============= */}
@@ -108,15 +139,14 @@ export default function Navbar() {
 
         <div
           className={`overflow-hidden transition-all duration-300 lg:hidden ${
-            isMenuOpen
-              ? "mt-4 max-h-125 opacity-100"
-              : "max-h-0 opacity-0"
+            isMenuOpen ? "mt-4 max-h-125 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           <div className="rounded-2xl bg-slate-100 p-6 dark:bg-[#1F1F22]">
-
             <div className="mb-5 flex items-center justify-between">
-              <span className="text-sm font-medium text-slate-500 dark:text-zinc-400">Theme</span>
+              <span className="text-sm font-medium text-slate-500 dark:text-zinc-400">
+                Theme
+              </span>
 
               <ThemeToggle />
             </div>
@@ -140,25 +170,33 @@ export default function Navbar() {
             <div className="my-6 h-px bg-slate-300 dark:bg-zinc-700" />
 
             <div className="space-y-3">
+              {user ? (
+                <div className="flex items-center gap-4">
+                  <p>Hi, {user.name}</p>
+                  <Button onClick={handleSignOut} variant="danger-soft" className="items-center">
+                    <PiSignOutBold />
+                  </Button>
+                </div>
+              ) : (
+                <Link
+                  href="/auth/sign-in"
+                  className="mr-8 text-[16px] font-medium text-violet-600 transition hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400"
+                >
+                  Sign In
+                </Link>
+              )}
 
-              <Link
-                href="/login"
-                onClick={() => setIsMenuOpen(false)}
-                className="block rounded-xl border border-slate-300 py-3 text-center font-medium text-violet-600 transition hover:bg-slate-200 dark:border-zinc-700 dark:text-violet-500 dark:hover:bg-zinc-800"
-              >
-                Sign In
-              </Link>
+              {/* Button */}
 
-              <Link
-                href="/register"
-                onClick={() => setIsMenuOpen(false)}
-                className="block rounded-xl bg-violet-600 py-3 text-center font-semibold text-white transition hover:bg-violet-500"
-              >
-                Get Started
-              </Link>
-
+              {!user && (
+                <Link
+                  href="/auth/sign-up"
+                  className="rounded-xl bg-violet-600 px-7 py-3 font-semibold text-white transition-all duration-300 hover:bg-violet-500"
+                >
+                  Get Started
+                </Link>
+              )}
             </div>
-
           </div>
         </div>
       </div>

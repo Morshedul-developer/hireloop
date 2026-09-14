@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
 import { FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import AuthLayout from "@/components/AuthLayout";
+import { authClient } from "@/app/lib/auth-client";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -39,7 +40,7 @@ export default function Login() {
     return nextErrors;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const nextErrors = validate();
@@ -47,11 +48,22 @@ export default function Login() {
     if (Object.keys(nextErrors).length > 0) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("Welcome back!");
-      router.push("/");
-    }, 900);
+
+    const { error } = await authClient.signIn.email({
+      email: form.email.trim(),
+      password: form.password,
+      rememberMe: form.remember,
+    });
+
+    setIsSubmitting(false);
+
+    if (error) {
+      toast.error(error.message || "Invalid email or password.");
+      return;
+    }
+
+    toast.success("Welcome back!");
+    router.push("/");
   };
 
   return (
