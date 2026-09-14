@@ -5,6 +5,6 @@ export const metadata = {
   description: "Sign in to your HireLoop account.",
 };
 
-export default function LoginPage() {
+export default function SignInPage() {
   return <Login />;
 }

@@ -5,6 +5,6 @@ export const metadata = {
   description: "Create your HireLoop account and start applying to jobs.",
 };
 
-export default function RegisterPage() {
+export default function SignUpPage() {
   return <Register />;
 }

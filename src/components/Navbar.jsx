@@ -77,7 +77,7 @@ export default function Navbar() {
             {/* Authentication Part */}
 
             <Link
-              href="/login"
+              href="/auth/sign-in"
               className="mr-8 text-[16px] font-medium text-violet-600 transition hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400"
             >
               Sign In
