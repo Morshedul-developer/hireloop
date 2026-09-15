@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { CheckCircle2, Sparkles, Star } from "lucide-react";
 
 const highlights = [
@@ -18,10 +16,6 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
           <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-violet-600/20 blur-[130px]" />
           <div className="absolute -bottom-32 -right-16 h-96 w-96 rounded-full bg-blue-600/15 blur-[130px]" />
         </div>
-
-        <Link href="/" className="relative flex items-center">
-          <Image src="/logo.png" alt="HireLoop" width={135} height={35} className="h-auto w-auto" priority />
-        </Link>
 
         <div className="relative">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-3.5 py-1.5 text-xs font-semibold text-violet-700 dark:text-violet-200">
@@ -81,10 +75,6 @@ export default function AuthLayout({ badge, title, highlight, subtitle, children
         </div>
 
         <div className="relative w-full max-w-md">
-          <Link href="/" className="mb-10 flex items-center lg:hidden">
-            <Image src="/logo.png" alt="HireLoop" width={120} height={32} className="h-auto w-auto" priority />
-          </Link>
-
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-2 text-sm font-semibold text-violet-700 dark:text-violet-200">
             {badge}
           </span>
