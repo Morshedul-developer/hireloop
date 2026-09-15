@@ -13,7 +13,7 @@ const RecruiterDashboardHomePage = () => {
   }
 
   return (
-    <div className="p-4 space-y-4">
+    <div>
       {user && <h1 className="text-2xl font-bold">Welcome, {user.name}!</h1>}
 
       <StatCardGrid>
