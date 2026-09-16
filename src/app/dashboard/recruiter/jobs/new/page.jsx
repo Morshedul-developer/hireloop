@@ -11,10 +11,23 @@ import {
   Calendar,
   Tags,
 } from "@gravity-ui/icons";
+import { createJob } from "@/app/lib/actions/jobs";
 
-const jobTypes = ["Full-time", "Part-time", "Contract", "Internship", "Temporary"];
+const jobTypes = [
+  "Full-time",
+  "Part-time",
+  "Contract",
+  "Internship",
+  "Temporary",
+];
 const workplaceTypes = ["On-site", "Hybrid", "Remote"];
-const experienceLevels = ["Entry level", "Junior", "Mid level", "Senior", "Lead"];
+const experienceLevels = [
+  "Entry level",
+  "Junior",
+  "Mid level",
+  "Senior",
+  "Lead",
+];
 const categories = [
   "Engineering",
   "Design",
@@ -65,7 +78,9 @@ function Field({ label, error, children, className = "" }) {
 function TextField({ icon: Icon, error, ...props }) {
   return (
     <div className={`${shell} ${error ? bad : ok}`}>
-      {Icon && <Icon width={16} height={16} className="shrink-0 text-zinc-400" />}
+      {Icon && (
+        <Icon width={16} height={16} className="shrink-0 text-zinc-400" />
+      )}
       <input className={input} {...props} />
     </div>
   );
@@ -134,24 +149,20 @@ export default function NewJobPage() {
       ...form,
       salaryMin: form.salaryMin ? Number(form.salaryMin) : null,
       salaryMax: form.salaryMax ? Number(form.salaryMax) : null,
-      skills: form.skills.split(",").map((s) => s.trim()).filter(Boolean),
+      skills: form.skills
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
     };
 
     console.log("Submitting job:", payload);
 
-    try {
-      const res = await fetch("/api/jobs", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("Failed to create job");
+    const res = await createJob(payload);
 
-      toast.success("Job posted.");
-      router.push("/dashboard/recruiter/jobs");
-    } catch (error) {
-      toast.error(error?.message || "Could not post the job.");
-      setIsSubmitting(false);
+    if (res.insertedId) {
+      toast.success("Job posted successfully.");
+      setForm(initialForm);
+      router.push("/dashboard/recruiter");
     }
   };
 
@@ -236,7 +247,11 @@ export default function NewJobPage() {
                   </select>
                 </div>
                 <div className={`${shell} ${ok}`}>
-                  <TagDollar width={16} height={16} className="shrink-0 text-zinc-400" />
+                  <TagDollar
+                    width={16}
+                    height={16}
+                    className="shrink-0 text-zinc-400"
+                  />
                   <input
                     type="number"
                     min="0"
@@ -277,7 +292,11 @@ export default function NewJobPage() {
               />
             </Field>
 
-            <Field label="Job Description" error={errors.description} className="sm:col-span-2">
+            <Field
+              label="Job Description"
+              error={errors.description}
+              className="sm:col-span-2"
+            >
               <textarea
                 rows={5}
                 value={form.description}
