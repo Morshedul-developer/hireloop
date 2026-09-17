@@ -57,7 +57,7 @@ const initialForm = {
 
 // TODO: remove — temporary until company registration flow is built
 const mockCompany = {
-  id: "68c9a1f2e4b0d5a7c3f21b90",
+  id: "company_12345",
   name: "SammTech Ltd.",
 };
 
@@ -170,7 +170,7 @@ export default function NewJobPage() {
     if (res.insertedId) {
       toast.success("Job posted successfully.");
       setForm(initialForm);
-      router.push("/dashboard/recruiter");
+      router.push("/dashboard/recruiter/jobs");
     }
   };
 
