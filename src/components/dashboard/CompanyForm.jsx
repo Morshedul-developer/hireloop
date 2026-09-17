@@ -114,8 +114,8 @@ export default function CompanyForm({
     if (!form.industry) next.industry = "Pick an industry.";
     if (!form.location.trim()) next.location = "Location is required.";
     if (!form.description.trim()) next.description = "Add a short description.";
-    else if (form.description.trim().length < 30)
-      next.description = "Write at least 30 characters.";
+    else if (form.description.trim().length < 15)
+      next.description = "Write at least 15 characters.";
     return next;
   };
 
