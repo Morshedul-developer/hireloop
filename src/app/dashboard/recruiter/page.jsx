@@ -13,8 +13,8 @@ const RecruiterDashboardHomePage = () => {
   }
 
   return (
-    <div>
-      {user && <h1 className="text-2xl font-bold">Welcome, {user.name}!</h1>}
+    <div className="space-y-5">
+      {user && <h1 className="text-3xl font-bold">Welcome, {user.name}!</h1>}
 
       <StatCardGrid>
         <StatCard icon={File} label="Total Job Posts" value={48} />

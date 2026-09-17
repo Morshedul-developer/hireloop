@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Table } from "@heroui/react";
+import { Eye, PencilToSquare, TrashBin } from "@gravity-ui/icons";
 
 const statusStyles = {
   active: "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300",
@@ -84,27 +85,32 @@ export default function JobsTable({ jobs = [] }) {
                 </Table.Cell>
 
                 <Table.Cell>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Link
-                      href={`/dashboard/recruiter/jobs/${job._id}/edit`}
-                      className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                    >
-                      Edit
-                    </Link>
-                    <Link
-                      href={`/dashboard/jobs/${job._id}/applicants`}
-                      className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                    >
-                      Applicants
-                    </Link>
-                    <button
-                      type="button"
-                      className="text-red-500 hover:text-red-600"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </Table.Cell>
+  <div className="flex items-center gap-1">
+    <Link
+      href={`/jobs/${job._id}`}
+      title="View details"
+      className="rounded-lg p-2 text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-white/10 dark:hover:text-white"
+    >
+      <Eye width={16} height={16} />
+    </Link>
+
+    <Link
+      href={`/dashboard/recruiter/jobs/${job._id}/edit`}
+      title="Edit"
+      className="rounded-lg p-2 text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-white/10 dark:hover:text-white"
+    >
+      <PencilToSquare width={16} height={16} />
+    </Link>
+
+    <button
+      type="button"
+      title="Delete"
+      className="rounded-lg p-2 text-zinc-500 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10"
+    >
+      <TrashBin width={16} height={16} />
+    </button>
+  </div>
+</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
