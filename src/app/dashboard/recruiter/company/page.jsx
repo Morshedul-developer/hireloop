@@ -17,6 +17,7 @@ import {
 } from "@gravity-ui/icons";
 import { Button, Surface, useOverlayState } from "@heroui/react";
 import CompanyForm from "@/components/dashboard/CompanyForm";
+import { createCompany } from "@/app/lib/actions/companies";
 
 const statusMap = {
   pending: {
@@ -47,14 +48,16 @@ export default function RecruiterCompanyPage() {
   const handleSubmit = async (payload) => {
     const isEdit = Boolean(company);
 
-    // TODO: call your API / server action here
-    setCompany({
-      ...payload,
-      _id: company?._id ?? "temp_id",
-      status: isEdit ? company.status : "pending",
-    });
+    const res = await createCompany(payload);
 
-    toast.success(isEdit ? "Company updated." : "Company submitted for review.");
+    if (res.insertedId) {
+      setCompany({ ...payload });
+      toast.success(
+        isEdit ? "Company updated." : "Company submitted for review.",
+      );
+    } else {
+      toast.error("Could not save the company.");
+    }
   };
 
   /* ---------- empty state ---------- */

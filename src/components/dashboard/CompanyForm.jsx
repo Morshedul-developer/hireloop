@@ -132,6 +132,7 @@ export default function CompanyForm({
       website: form.website.trim()
         ? `https://${form.website.trim().replace(/^https?:\/\//, "")}`
         : "",
+        status: isEdit ? initialData.status : "pending",
     };
 
     try {
