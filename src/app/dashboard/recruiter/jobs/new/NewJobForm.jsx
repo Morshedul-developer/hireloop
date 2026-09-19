@@ -55,12 +55,6 @@ const initialForm = {
   requirements: "",
 };
 
-// TODO: remove — temporary until company registration flow is built
-// const mockCompany = {
-//   id: "company_12345",
-//   name: "SammTech Ltd.",
-// };
-
 const shell =
   "flex items-center gap-2 rounded-lg border bg-white px-3 py-2.5 transition dark:bg-white/5";
 const ok =
@@ -161,11 +155,12 @@ export default function NewJobForm({ company }) {
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean),
-      companyId: mockCompany.id, // Replace with actual company ID from session or context
+      companyId: company._id,
+      companyName: company.name,
+      companyLogo: company.logo,
       status: "active",
     };
 
-    console.log("Submitting job:", payload);
 
     const res = await createJob(payload);
 

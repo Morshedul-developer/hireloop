@@ -1,9 +1,11 @@
+import { getLoggedInRecruiterCompany } from "@/app/lib/api/companies";
 import { getCompanyJobs } from "@/app/lib/api/jobs";
 import JobsTable from "@/components/dashboard/JobsTable";
 import Link from "next/link";
 
 const RecruiterJobsPage = async () => {
-  const companyId = "company_12345"; // Replace with the actual company ID
+  const company = await getLoggedInRecruiterCompany();
+  const companyId = company._id;
   const jobs = await getCompanyJobs(companyId);
 
   return (
