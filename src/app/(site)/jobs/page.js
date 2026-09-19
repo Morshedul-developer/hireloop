@@ -1,9 +1,8 @@
 import { getJobs } from "@/app/lib/api/jobs";
-import JobCard from "@/components/jobs/JobCard";
+import JobsFilter from "@/components/jobs/JobsFilter";
 
 export default async function JobsPage() {
   const jobs = await getJobs("/api/jobs");
-
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -14,10 +13,8 @@ export default async function JobsPage() {
         {jobs.length} open {jobs.length === 1 ? "role" : "roles"} right now.
       </p>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {jobs.map((job) => (
-          <JobCard key={job._id} job={job} />
-        ))}
+      <div className="mt-8">
+        <JobsFilter jobs={jobs} />
       </div>
     </div>
   );

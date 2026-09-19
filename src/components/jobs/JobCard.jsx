@@ -12,14 +12,17 @@ function formatSalary(min, max) {
 }
 
 function timeAgo(date) {
+  if (!date) return "";
   const days = Math.floor((Date.now() - new Date(date)) / 86400000);
   if (days <= 0) return "Posted today";
   if (days === 1) return "Posted yesterday";
   if (days < 30) return `Posted ${days} days ago`;
-  return `Posted ${Math.floor(days / 30)} months ago`;
+  const months = Math.floor(days / 30);
+  return `Posted ${months} month${months === 1 ? "" : "s"} ago`;
 }
 
 function closing(deadline) {
+  if (!deadline) return { text: "", urgent: false };
   const days = Math.ceil((new Date(deadline) - Date.now()) / 86400000);
   if (days < 0) return { text: "Applications closed", urgent: true };
   if (days === 0) return { text: "Closes today", urgent: true };
@@ -30,6 +33,7 @@ function closing(deadline) {
 
 export default function JobCard({ job, onSave }) {
   const deadline = closing(job.deadline);
+  const posted = timeAgo(job.createdAt);
 
   return (
     <article className="relative flex flex-col overflow-hidden rounded-2xl bg-surface ring-1 ring-border/70 transition-shadow duration-300 hover:shadow-[0_8px_30px_-12px_rgb(0_0_0/0.25)]">
@@ -83,14 +87,12 @@ export default function JobCard({ job, onSave }) {
           {job.title}
         </h3>
 
-        {/* salary — the focal point */}
+        {/* salary */}
         <div className="flex items-baseline gap-1.5">
           <span className="text-3xl leading-none font-semibold tabular-nums tracking-tight text-foreground">
             {formatSalary(job.salaryMin, job.salaryMax)}
           </span>
-          <span className="text-sm font-medium text-muted">
-            {job.currency} / month
-          </span>
+          <span className="text-sm font-medium text-muted">{job.currency}</span>
         </div>
 
         {/* meta */}
@@ -139,15 +141,17 @@ export default function JobCard({ job, onSave }) {
       {/* footer */}
       <footer className="mt-auto flex items-center justify-between gap-3 border-t border-border/70 bg-default/40 px-6 py-3.5">
         <div className="min-w-0 text-xs">
-          <p className="truncate text-muted">{timeAgo(job.createdAt)}</p>
-          <p
-            className={`flex items-center gap-1 truncate ${
-              deadline.urgent ? "font-medium text-danger" : "text-muted"
-            }`}
-          >
-            <Clock className="size-3 shrink-0" />
-            {deadline.text}
-          </p>
+          {posted && <p className="truncate text-muted">{posted}</p>}
+          {deadline.text && (
+            <p
+              className={`flex items-center gap-1 truncate ${
+                deadline.urgent ? "font-medium text-danger" : "text-muted"
+              }`}
+            >
+              <Clock className="size-3 shrink-0" />
+              {deadline.text}
+            </p>
+          )}
         </div>
 
         <Link
