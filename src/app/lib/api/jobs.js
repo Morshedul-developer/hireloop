@@ -1,3 +1,5 @@
+import { serverFetch } from "../core/server";
+
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const getCompanyJobs = async (companyId, status = "active") => {
@@ -6,3 +8,7 @@ export const getCompanyJobs = async (companyId, status = "active") => {
   );
   return res.json();
 };
+
+export const getJobs = async (path) => {
+  return serverFetch(path)
+}
