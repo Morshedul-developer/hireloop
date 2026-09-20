@@ -20,7 +20,7 @@ export default function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect" || "/");
+  const redirectTo = searchParams.get("redirect") || "/";
 
   const updateField = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));

@@ -81,7 +81,7 @@ export default function Register() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect" || "/");
+  const redirectTo = searchParams.get("redirect") || "/";
 
   const passwordStrength = getPasswordStrength(form.password);
 
