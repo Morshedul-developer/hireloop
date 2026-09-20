@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight } from "lucide-react";
 import { FaGoogle, FaLinkedinIn } from "react-icons/fa";
@@ -18,6 +18,9 @@ export default function Login() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect" || "/");
 
   const updateField = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -63,7 +66,7 @@ export default function Login() {
     }
 
     toast.success("Welcome back!");
-    router.push("/");
+    router.push(redirectTo);
   };
 
   return (
@@ -75,7 +78,10 @@ export default function Login() {
     >
       <form onSubmit={handleSubmit} noValidate className="space-y-5">
         <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300">
+          <label
+            htmlFor="email"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300"
+          >
             Email address
           </label>
           <div
@@ -85,7 +91,10 @@ export default function Login() {
                 : "border-slate-200 focus-within:border-violet-400 dark:border-white/10 dark:focus-within:border-violet-400/60"
             }`}
           >
-            <Mail className="shrink-0 text-slate-400 dark:text-zinc-500" size={18} />
+            <Mail
+              className="shrink-0 text-slate-400 dark:text-zinc-500"
+              size={18}
+            />
             <input
               id="email"
               type="email"
@@ -96,11 +105,18 @@ export default function Login() {
               className="w-full bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none dark:text-white dark:placeholder:text-zinc-500"
             />
           </div>
-          {errors.email && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.email}</p>}
+          {errors.email && (
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.email}
+            </p>
+          )}
         </div>
 
         <div>
-          <label htmlFor="password" className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300">
+          <label
+            htmlFor="password"
+            className="mb-2 block text-sm font-medium text-slate-700 dark:text-zinc-300"
+          >
             Password
           </label>
           <div
@@ -110,7 +126,10 @@ export default function Login() {
                 : "border-slate-200 focus-within:border-violet-400 dark:border-white/10 dark:focus-within:border-violet-400/60"
             }`}
           >
-            <Lock className="shrink-0 text-slate-400 dark:text-zinc-500" size={18} />
+            <Lock
+              className="shrink-0 text-slate-400 dark:text-zinc-500"
+              size={18}
+            />
             <input
               id="password"
               type={showPassword ? "text" : "password"}
@@ -129,7 +148,11 @@ export default function Login() {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-          {errors.password && <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.password}</p>}
+          {errors.password && (
+            <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+              {errors.password}
+            </p>
+          )}
         </div>
 
         <div className="flex items-center justify-between">
@@ -137,7 +160,9 @@ export default function Login() {
             <input
               type="checkbox"
               checked={form.remember}
-              onChange={(event) => updateField("remember", event.target.checked)}
+              onChange={(event) =>
+                updateField("remember", event.target.checked)
+              }
               className="h-4 w-4 rounded border-slate-300 bg-white accent-violet-500 dark:border-white/20 dark:bg-white/5"
             />
             Remember me
@@ -145,7 +170,9 @@ export default function Login() {
 
           <button
             type="button"
-            onClick={() => toast("Password reset instructions will be emailed to you soon.")}
+            onClick={() =>
+              toast("Password reset instructions will be emailed to you soon.")
+            }
             className="text-sm font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
           >
             Forgot password?
@@ -196,7 +223,10 @@ export default function Login() {
 
       <p className="mt-8 text-center text-sm text-slate-600 dark:text-zinc-400">
         Don&apos;t have an account?{" "}
-        <Link href="/auth/sign-up" className="font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200">
+        <Link
+          href={`/auth/sign-up?redirect=${redirectTo}`}
+          className="font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
+        >
           Create one
         </Link>
       </p>

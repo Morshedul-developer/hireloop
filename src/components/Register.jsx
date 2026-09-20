@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import {
   User,
@@ -80,6 +80,9 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect" || "/");
+
   const passwordStrength = getPasswordStrength(form.password);
 
   const updateField = (field, value) => {
@@ -141,7 +144,7 @@ export default function Register() {
     }
 
     toast.success("Account created! Welcome to HireLoop.");
-    router.push("/");
+    router.push(redirectTo);
   };
 
   return (
@@ -450,7 +453,7 @@ export default function Register() {
       <p className="mt-8 text-center text-sm text-slate-600 dark:text-zinc-400">
         Already have an account?{" "}
         <Link
-          href="/auth/sign-in"
+          href={`/auth/sign-in?redirect=${redirectTo}`}
           className="font-semibold text-violet-600 hover:text-violet-500 dark:text-violet-300 dark:hover:text-violet-200"
         >
           Sign in
