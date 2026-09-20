@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
+  ArrowRight,
   ArrowUpRightFromSquare,
   Bookmark,
   Briefcase,
@@ -35,10 +36,13 @@ function formatDate(value) {
 function closing(deadline) {
   if (!deadline) return { text: "", urgent: false, closed: false };
   const days = Math.ceil((new Date(deadline) - Date.now()) / 86400000);
-  if (days < 0) return { text: "Applications closed", urgent: true, closed: true };
+  if (days < 0)
+    return { text: "Applications closed", urgent: true, closed: true };
   if (days === 0) return { text: "Closes today", urgent: true, closed: false };
-  if (days === 1) return { text: "Closes tomorrow", urgent: true, closed: false };
-  if (days <= 7) return { text: `Closes in ${days} days`, urgent: true, closed: false };
+  if (days === 1)
+    return { text: "Closes tomorrow", urgent: true, closed: false };
+  if (days <= 7)
+    return { text: `Closes in ${days} days`, urgent: true, closed: false };
   return { text: `Closes in ${days} days`, urgent: false, closed: false };
 }
 
@@ -183,7 +187,10 @@ export default async function JobDetailsPage({ params }) {
               </h2>
               <ul className="mt-4 space-y-3">
                 {requirements.map((line, index) => (
-                  <li key={index} className="flex gap-3 leading-relaxed text-muted">
+                  <li
+                    key={index}
+                    className="flex gap-3 leading-relaxed text-muted"
+                  >
                     <CircleCheck className="mt-1 size-4 shrink-0 text-success" />
                     {line}
                   </li>
@@ -269,15 +276,30 @@ export default async function JobDetailsPage({ params }) {
               ) : (
                 <Link
                   href={`/jobs/${job._id}/apply`}
-                  className="mt-5 block rounded-xl bg-foreground py-3.5 text-center font-semibold text-surface transition-opacity hover:opacity-90"
+                  className="group relative mt-5 block overflow-hidden rounded-xl bg-accent py-3.5 text-center font-semibold text-accent-foreground shadow-lg shadow-accent/25 ring-1 ring-inset ring-white/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface active:translate-y-0 active:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                 >
-                  Apply now
+                  {/* top inner highlight */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-linear-to-b from-white/15 to-transparent"
+                  />
+
+                  {/* shine sweep */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 -left-full w-1/2 skew-x-[-20deg] bg-linear-to-r from-transparent via-white/35 to-transparent transition-all duration-700 ease-out group-hover:left-[150%] motion-reduce:hidden"
+                  />
+
+                  <span className="relative inline-flex items-center gap-2">
+                    Apply now
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
               )}
 
               <button
                 type="button"
-                className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium text-foreground ring-1 ring-border/70 transition-colors hover:bg-default"
+                className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium text-muted ring-1 ring-border/70 transition-colors duration-200 hover:bg-default hover:text-foreground"
               >
                 <Bookmark className="size-4" />
                 Save job
