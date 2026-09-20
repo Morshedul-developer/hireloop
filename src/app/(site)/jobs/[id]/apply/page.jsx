@@ -2,6 +2,8 @@ import { getJobById } from "@/app/lib/api/jobs";
 import { getUserSession } from "@/app/lib/core/session";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import { MapPin } from "@gravity-ui/icons";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,6 +11,7 @@ import {
   LayoutCells,
   ShieldKeyhole,
 } from "@gravity-ui/icons";
+import ApplicationForm from "./ApplicationForm";
 
 const ApplyJobPage = async ({ params }) => {
   const { id } = await params;
@@ -92,10 +95,87 @@ const ApplyJobPage = async ({ params }) => {
   }
 
   return (
-    <div>
-      <h1>Apply for {job.title}</h1>
+  <div className="mx-auto max-w-3xl px-4 py-8">
+    <Link
+      href={`/jobs/${id}`}
+      className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground"
+    >
+      <ArrowLeft className="size-4" />
+      Back to this role
+    </Link>
+
+    <header className="relative overflow-hidden rounded-2xl bg-surface p-6 ring-1 ring-border/70 sm:p-8">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent"
+      />
+
+      <div className="flex flex-wrap items-start gap-5">
+        <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-white ring-1 ring-black/5">
+          {job.companyLogo ? (
+            <Image
+              src={job.companyLogo}
+              alt=""
+              width={56}
+              height={56}
+              className="size-9 object-contain"
+            />
+          ) : (
+            <span className="text-lg font-semibold text-neutral-700">
+              {job.companyName?.charAt(0)}
+            </span>
+          )}
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-medium tracking-wider text-muted uppercase">
+            Applying for
+          </p>
+          <h1 className="mt-1.5 text-2xl leading-tight font-semibold tracking-[-0.02em] text-balance text-foreground">
+            {job.title}
+          </h1>
+
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted">
+            <span className="font-medium text-foreground">
+              {job.companyName}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <MapPin className="size-4 opacity-60" />
+              {job.workplace === "Remote" ? "Remote" : job.location}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Briefcase className="size-4 opacity-60" />
+              {job.jobType}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* steps */}
+      <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border/70 pt-5 text-xs">
+        {["Your details", "Resume & links", "Experience", "Cover letter"].map(
+          (step, index) => (
+            <li key={step} className="flex items-center gap-2 text-muted">
+              <span className="flex size-5 items-center justify-center rounded-full bg-default text-[10px] font-semibold text-foreground">
+                {index + 1}
+              </span>
+              {step}
+              {index < 3 && (
+                <span aria-hidden="true" className="ml-1 opacity-40">
+                  ·
+                </span>
+              )}
+            </li>
+          )
+        )}
+      </ol>
+    </header>
+
+    <div className="mt-6">
+      <ApplicationForm applicant={user} job={job} />
     </div>
-  );
+  </div>
+);
 };
 
 export default ApplyJobPage;
